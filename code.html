@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Spider-Verse Central | Beyond the Mask</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary-fixed": "#410003",
+                        "inverse-surface": "#e5e2e1",
+                        "on-background": "#e5e2e1",
+                        "secondary-fixed-dim": "#afc8f0",
+                        "primary-container": "#e62429",
+                        "on-secondary": "#163152",
+                        "surface-container-high": "#2a2a2a",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed": "#00fbfb",
+                        "surface-tint": "#ffb4ac",
+                        "outline": "#ad8884",
+                        "inverse-primary": "#c00016",
+                        "background": "#0c0c0c",
+                        "on-tertiary-fixed-variant": "#004f4f",
+                        "on-secondary-fixed": "#001c3a",
+                        "on-error": "#690005",
+                        "on-primary": "#690007",
+                        "on-tertiary": "#003737",
+                        "secondary-fixed": "#d4e3ff",
+                        "primary": "#e62429",
+                        "primary-fixed": "#ffdad6",
+                        "on-primary-container": "#ffffff",
+                        "secondary-container": "#2f486a",
+                        "surface-dim": "#131313",
+                        "tertiary-fixed-dim": "#00dddd",
+                        "surface-container-highest": "#353534",
+                        "inverse-on-surface": "#313030",
+                        "on-tertiary-fixed": "#002020",
+                        "secondary": "#afc8f0",
+                        "surface-container": "#201f1f",
+                        "tertiary": "#00fbfb",
+                        "on-primary-fixed-variant": "#93000e",
+                        "on-secondary-fixed-variant": "#2f486a",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-bright": "#393939",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#131313",
+                        "tertiary-container": "#008484",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary-container": "#9eb7de",
+                        "on-tertiary-container": "#ffffff",
+                        "on-surface-variant": "#e7bdb8",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "on-surface": "#e5e2e1",
+                        "outline-variant": "#5d3f3c",
+                        "surface-variant": "#353534"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "panel-skew": "-3deg",
+                        "margin-desktop": "64px",
+                        "unit": "8px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Anton"],
+                        "headline-lg": ["Anton"],
+                        "label-tech": ["Space Grotesk"],
+                        "display-hero": ["Anton"],
+                        "headline-lg-mobile": ["Anton"],
+                        "body-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "headline-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "label-tech": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "display-hero": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.04em", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["48px", {"lineHeight": "52px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        :root {
+            --theme-primary: #e62429;
+            --theme-secondary: #00fbfb;
+            --theme-glow: rgba(0, 251, 251, 0.4);
+            --theme-cursor-glow: rgba(230, 36, 41, 0.5);
+        }
+
+        body {
+            background-color: #0c0c0c;
+            cursor: none;
+            overflow-x: hidden;
+        }
+
+        .custom-border {
+            border: 4px solid #000;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .halftone-overlay {
+            background-image: radial-gradient(#000 15%, transparent 20%);
+            background-size: 4px 4px;
+            pointer-events: none;
+        }
+
+        .skew-container {
+            transform: skewX(-3deg);
+        }
+
+        .comic-panel {
+            border: 4px solid #000;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .comic-panel:hover {
+            transform: scale(1.02) skewX(-2deg);
+            z-index: 10;
+            box-shadow: 8px 8px 0px var(--theme-primary);
+        }
+
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--theme-primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 15px 5px var(--theme-cursor-glow);
+            transition: transform 0.05s ease-out;
+            mix-blend-mode: normal;
+        }
+
+        .glitch-text {
+            text-shadow: 2px 0 var(--theme-secondary), -2px 0 var(--theme-primary);
+            animation: glitch-anim 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { text-shadow: 2px 0 var(--theme-secondary), -2px 0 var(--theme-primary); }
+            50% { text-shadow: -2px 0 var(--theme-secondary), 2px 0 var(--theme-primary); }
+            100% { text-shadow: 1px 0 var(--theme-secondary), -1px 0 var(--theme-primary); }
+        }
+
+        .thwip-button {
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .thwip-button:active {
+            transform: scale(0.9);
+        }
+
+        /* Scan line animation */
+        @keyframes scan {
+            0% { transform: translateY(-10%); }
+            100% { transform: translateY(510%); }
+        }
+        .scan-line {
+            animation: scan 3s linear infinite;
+        }
+
+        /* Frequency Wave Pulse */
+        @keyframes pulse-wave {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 0; }
+        }
+        .frequency-pulse {
+            animation: pulse-wave 2s infinite linear;
+        }
+
+        /* SVG Grid pattern background */
+        .svg-grid-bg {
+            background-size: 20px 20px;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+        }
+
+        .active-nav-link {
+            color: var(--theme-secondary) !important;
+            border-bottom: 2px solid var(--theme-secondary);
+        }
+
+        /* Page Glitch Transition Overlay */
+        .glitch-flicker {
+            animation: glitch-flicker-anim 0.3s ease-out;
+        }
+        @keyframes glitch-flicker-anim {
+            0% { opacity: 0; }
+            10% { opacity: 1; background: #e62429; }
+            20% { opacity: 0.5; background: #00fbfb; }
+            35% { opacity: 0.9; background: #0c0c0c; }
+            50% { opacity: 0.2; }
+            65% { opacity: 1; background: #00fbfb; }
+            80% { opacity: 0.4; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background select-none">
+    
+    <!-- Canvas for particles -->
+    <canvas class="fixed inset-0 pointer-events-none z-[9997]" id="particleCanvas"></canvas>
+    
+    <!-- Interactive web connection overlay -->
+    <canvas class="fixed inset-0 pointer-events-none z-[9996]" id="webLinkCanvas"></canvas>
+    
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Glitch Transition Block -->
+    <div id="glitch-transition" class="fixed inset-0 z-[9999] pointer-events-none opacity-0 flex items-center justify-center">
+        <div class="halftone-overlay absolute inset-0 opacity-40"></div>
+        <div class="font-display-hero text-6xl md:text-8xl text-white italic uppercase tracking-widest font-bold glitch-text transform -skew-x-6">TRAVERSING...</div>
+    </div>
+
+    <!-- HUD Overlay Mode Indicators -->
+    <div id="hud-notification" class="fixed top-24 right-6 z-40 bg-black/90 border-2 border-tertiary text-tertiary px-4 py-2 font-label-tech text-xs uppercase hidden tracking-widest skew-x-[-3deg] shadow-[4px_4px_0_#000]">
+        HUD SYSTEM: RE-CALIBRATED
+    </div>
+
+    <!-- TopNavBar -->
+    <header class="fixed top-0 w-full z-50 skew-x-[-3deg] bg-surface/90 backdrop-blur-xl border-b-4 border-primary shadow-[0_0_15px_rgba(230,36,41,0.4)]">
+        <div class="flex justify-between items-center w-full px-gutter max-w-full mx-auto h-20">
+            <div class="font-headline-md text-headline-md text-primary uppercase tracking-tighter cursor-pointer flex items-center gap-2" onclick="navigateToPage('home')">
+                <span class="material-symbols-outlined text-3xl">token</span>
+                SPIDER-VERSE CENTRAL
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-6">
+                <button class="nav-btn text-on-surface-variant font-medium font-label-tech text-label-tech hover:text-tertiary hover:skew-x-3 transition-all duration-300 active-nav-link" onclick="navigateToPage('home')">Home/Lore</button>
+                <button class="nav-btn text-on-surface-variant font-medium font-label-tech text-label-tech hover:text-tertiary hover:skew-x-3 transition-all duration-300" onclick="navigateToPage('timeline')">Timeline</button>
+                <button class="nav-btn text-on-surface-variant font-medium font-label-tech text-label-tech hover:text-tertiary hover:skew-x-3 transition-all duration-300" onclick="navigateToPage('multiverse')">Multiverse</button>
+                <button class="nav-btn text-on-surface-variant font-medium font-label-tech text-label-tech hover:text-tertiary hover:skew-x-3 transition-all duration-300" onclick="navigateToPage('suits')">Suits</button>
+                <button class="nav-btn text-on-surface-variant font-medium font-label-tech text-label-tech hover:text-tertiary hover:skew-x-3 transition-all duration-300" onclick="navigateToPage('gadgets')">Gadget Lab</button>
+                <button class="nav-btn text-on-surface-variant font-medium font-label-tech text-label-tech hover:text-tertiary hover:skew-x-3 transition-all duration-300 flex items-center gap-1 text-red-500" onclick="navigateToPage('stabilize')">
+                    <span class="material-symbols-outlined text-sm animate-pulse">warning</span> Stabilize
+                </button>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <!-- Sound Toggle -->
+                <button id="sound-toggle" class="text-primary hover:text-tertiary flex items-center justify-center p-2 border-2 border-black bg-surface-container hover:scale-105 active:scale-95 transition-all" onclick="toggleSound()">
+                    <span id="sound-icon" class="material-symbols-outlined text-xl">volume_up</span>
+                </button>
+
+                <!-- Security Clearance Status -->
+                <div id="clearance-badge" class="bg-surface-container-high border-2 border-black px-4 py-2 font-label-tech text-xs uppercase skew-x-[-10deg] text-primary flex items-center gap-1 select-none">
+                    <span id="clearance-dot" class="w-2.5 h-2.5 bg-red-600 rounded-full animate-ping mr-1"></span>
+                    <span>Access: Guest</span>
+                </div>
+
+                <button class="bg-primary-container text-on-primary-container px-6 py-2 font-label-tech text-label-tech uppercase skew-x-[-10deg] border-2 border-black hover:bg-tertiary hover:text-black transition-colors duration-300 active:scale-95" onclick="navigateToPage('suits')">
+                    Suit Up
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN PAGE CONTAINER -->
+    <main class="pt-20">
+
+        <!-- ================= HOME PAGE ================= -->
+        <div id="page-home" class="page-section">
+            <!-- Hero Section -->
+            <section class="relative h-[85vh] flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 w-full h-full z-0 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBd0gHBRzDtDUyk5ebs34KkenIyqtue4Uc79rxNf6xj3zq50smLqpDSh8jUbuUrueuObT17tk54wSYU2GJ0qrftBdGttDtz5Ny4WoZunorvwGKvD-xkD5tufxuzJEudN4Fl5UHmmoK4IaaFDB854ATNABSEXjvIITbTbbLv9qYU-Hgc4OM685ETOskKXqUgr8L5w_-2w6i4MkjmgM8mg6sbMU2132H6Q7gdHkZN-ox4FKF40LgIfO562uHBHl83dI1krtUsIvNSRy8");'>
+                    <div class="absolute inset-0 bg-black/50"></div>
+                    <div class="halftone-overlay absolute inset-0 opacity-35"></div>
+                </div>
+                <div class="relative z-10 text-center px-gutter">
+                    <h1 class="font-display-hero text-8xl md:text-display-hero text-white uppercase italic skew-x-[-6deg] glitch-text leading-none select-none transition-all duration-700">
+                        Beyond<br/>The Mask
+                    </h1>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mt-6 bg-black/60 backdrop-blur-sm p-4 skew-x-[-3deg] border-l-4 border-primary">
+                        Every dimension, every story, one legacy. Dive deep into the kinetic architecture of the Spider-Verse.
+                    </p>
+                    <div class="mt-12 flex flex-wrap justify-center gap-6">
+                        <button class="thwip-button bg-primary-container text-on-primary-container px-10 py-5 font-headline-md text-2xl uppercase skew-x-[-6deg] border-4 border-black hover:bg-tertiary hover:text-black transition-all shadow-[6px_6px_0_#000]" onclick="navigateToPage('multiverse')">
+                            Explore the Multiverse
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About / Lore Section -->
+            <section class="py-20 relative overflow-hidden bg-surface-container-low">
+                <div class="max-w-7xl mx-auto px-gutter">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                        <!-- Main Lore Panel -->
+                        <div class="md:col-span-7 comic-panel p-8 overflow-hidden skew-x-[-2deg]" style="background-image: linear-gradient(rgba(230, 36, 41, 0.92), rgba(230, 36, 41, 0.92)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuASPX2q4-83gHweWwJja7iBz0TSwOEC-OGRdItU1K89-8C1IUowiPoa3VItQmejJiPbXs8k7v_d3Hben76jg5M9a5TIV-L7fjLXuYIPRVlp3FUriuh9Ou7_D_5QQXLYd9yI--rr2LEG3P34zhReW0TxiqFYO4mK5a1Y-y46W8mKranhz8wQAnWG8toBLOOlrXw3w25NWA1W9ZqjBjs2wbzBEw23hI1ISXmY4SRjiQchj3IJU5wIeiS__IDbD6hnW6FPvP_nSWbXtoI'); background-repeat: repeat; background-size: 400px;">
+                            <div class="halftone-overlay absolute inset-0 opacity-20"></div>
+                            <div class="relative z-10 text-white">
+                                <span class="bg-black text-white font-label-tech text-label-tech px-4 py-1 uppercase absolute -top-4 -left-4 border-2 border-white">Origin Protocol</span>
+                                <h2 class="font-headline-lg text-4xl md:text-headline-lg uppercase mt-4 text-white">The Web of Life</h2>
+                                <div class="mt-6 font-body-lg text-body-lg space-y-4">
+                                    <p class="border-l-4 border-white pl-4 italic">"At the nexus of existence lies the Web of Destiny..."</p>
+                                    <p>Connecting every Spider-being across infinite timelines. It is a cosmic construct that governs the distribution of spider-themed powers throughout the multiverse.</p>
+                                    <p>Whether it's a radioactive bite, mechanical genius, or a genetic hack, the calling remains identical: **Great power requires great responsibility.**</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Secondary Panels -->
+                        <div class="md:col-span-5 flex flex-col gap-8">
+                            <div class="comic-panel bg-secondary-container p-6 skew-x-[1deg] border-4 border-black h-full cursor-pointer hover:bg-secondary-container/95" onclick="navigateToPage('stabilize')">
+                                <div class="halftone-overlay absolute inset-0 opacity-30"></div>
+                                <div class="relative z-10 flex flex-col justify-between h-full">
+                                    <div>
+                                        <div class="flex items-center gap-2 text-white bg-red-600 self-start px-2 py-0.5 border border-white font-label-tech text-xs uppercase tracking-widest animate-pulse mb-3 w-fit">
+                                            <span class="material-symbols-outlined text-sm">warning</span> ALERT
+                                        </div>
+                                        <h3 class="font-headline-md text-headline-md text-white uppercase italic">Anomalies Detected</h3>
+                                        <p class="font-body-md text-body-md text-on-secondary-container mt-2">Critical timeline failures detected. Multiple rogue anomalies are splitting the Web of Destiny. Protocol 42 is in active effect.</p>
+                                    </div>
+                                    <div class="mt-6 flex gap-2 items-center text-white border-t border-white/20 pt-4 font-label-tech text-label-tech uppercase">
+                                        <span>Click to open Stabilizer Terminal</span>
+                                        <span class="material-symbols-outlined animate-bounce">arrow_forward</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="comic-panel bg-surface p-6 skew-x-[-1deg] border-4 border-primary h-full">
+                                <div class="absolute inset-0 bg-cover bg-center opacity-40" data-alt="Glitching NYC skyline" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6MC7pvPB9hFvJ79dA_rVXyVeFtxlc7dUTOMtph51tTWNfQU-2xnSzhc6J-XaXjTqFkaJt5B2hkffz3lg1ZEo4grZIF1QaUiG05sJREjZZq9PTMjYFt2HIKF_NF3B8nXsfP61kIRTmEy0zcDSM-4n5Qnv9Xo9Ez8yycnPZHPaHLwKZwQJoek25IskHvg-sPIy87nnQjFKlKMBuRknbfia4RCjpFWYD26bCt0yHRdL1ZnaQ7hcxg0KDlYjaJFVyfkpGRAOmrqZGZKg");'></div>
+                                <div class="relative z-10 bg-black/75 p-4 border border-primary/30 h-full flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="font-headline-md text-headline-md text-primary uppercase">The Hub</h3>
+                                        <p class="font-body-md text-body-md text-white mt-1">Central command center for the inter-dimensional Spider-Society. Access restricted to verified arachnid operators.</p>
+                                    </div>
+                                    <button class="mt-4 bg-primary text-white font-label-tech text-xs uppercase px-4 py-2 hover:bg-tertiary hover:text-black self-start border border-black" onclick="navigateToPage('multiverse')">Open Spider-Society Dossier</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= TIMELINE PAGE ================= -->
+        <div id="page-timeline" class="page-section hidden py-12">
+            <div class="max-w-6xl mx-auto px-gutter">
+                <div class="text-center mb-16">
+                    <span class="text-primary font-label-tech text-sm uppercase tracking-widest border-b-2 border-primary pb-1">Chrono-Archives</span>
+                    <h2 class="font-headline-lg text-5xl md:text-6xl text-white uppercase italic mt-4">Web of Destiny Events</h2>
+                    <p class="text-on-surface-variant font-body-lg max-w-xl mx-auto mt-2">Explore the critical nodes that define the structural history of our shared dimensions.</p>
+                </div>
+
+                <!-- Interactive Vertical Timeline -->
+                <div class="relative border-l-4 border-primary/30 ml-4 md:ml-1/2 md:translate-x-[-2px] space-y-12 pb-12">
+                    
+                    <!-- Node 1 -->
+                    <div class="relative pl-8 md:pl-0 md:w-1/2 md:left-0 md:pr-12 md:text-right group">
+                        <div class="absolute top-1 -left-[14px] md:left-auto md:right-[-14px] w-6 h-6 bg-black border-4 border-primary rounded-full group-hover:bg-tertiary group-hover:scale-125 transition-all duration-300 z-10 cursor-pointer" onclick="toggleTimelineDetails('tl-1')"></div>
+                        <div class="comic-panel bg-surface-container p-6 border-2 border-black inline-block text-left max-w-lg cursor-pointer skew-x-[-2deg]" onclick="toggleTimelineDetails('tl-1')">
+                            <span class="text-tertiary font-label-tech text-xs uppercase">Earth-90214 | 1933</span>
+                            <h3 class="font-headline-md text-xl text-white uppercase mt-1">Noir Genesis</h3>
+                            <p class="font-body-md text-sm text-on-surface-variant mt-2">A gritty investigative reporter is bitten by a spider released from a smuggled ancient artifact...</p>
+                            <div id="tl-1" class="hidden mt-4 border-t border-primary/20 pt-4 text-xs text-on-surface-variant space-y-2">
+                                <p>Bitten inside a warehouse belonging to the Goblin's criminal syndicate, Peter Parker of Earth-90214 receives vision from a Spider-God offering power. He uses stealth, hand-to-hand combat, and traditional firearms in a monochrome Great Depression New York to dismantle corrupt institutions.</p>
+                                <span class="bg-primary/20 text-primary border border-primary/40 px-2 py-0.5 inline-block font-label-tech uppercase mt-2">Anomaly Threat Index: Low</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Node 2 -->
+                    <div class="relative pl-8 md:pl-0 md:w-1/2 md:left-1/2 md:pl-12 group">
+                        <div class="absolute top-1 -left-[14px] w-6 h-6 bg-black border-4 border-primary rounded-full group-hover:bg-tertiary group-hover:scale-125 transition-all duration-300 z-10 cursor-pointer" onclick="toggleTimelineDetails('tl-2')"></div>
+                        <div class="comic-panel bg-surface-container-high p-6 border-2 border-black inline-block text-left max-w-lg cursor-pointer skew-x-[2deg]" onclick="toggleTimelineDetails('tl-2')">
+                            <span class="text-tertiary font-label-tech text-xs uppercase">Earth-928 | 2099</span>
+                            <h3 class="font-headline-md text-xl text-white uppercase mt-1">Alchemax Genetic Graft</h3>
+                            <p class="font-body-md text-sm text-on-surface-variant mt-2">Miguel O'Hara attempts to purge an addictive corporate drug from his DNA, splicing it with spider genes...</p>
+                            <div id="tl-2" class="hidden mt-4 border-t border-primary/20 pt-4 text-xs text-on-surface-variant space-y-2">
+                                <p>After a sabotage attempt by his supervisor at Alchemax, Miguel's gene-splicing machine yields 50% arachnid DNA code. He gains razor-sharp talons, organic spinnerets, enhanced sensors, and fangs secreting non-lethal venom. This event prompts the construction of the dimensional jump keypads.</p>
+                                <span class="bg-primary/20 text-primary border border-primary/40 px-2 py-0.5 inline-block font-label-tech uppercase mt-2">Anomaly Threat Index: Stable</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Node 3 -->
+                    <div class="relative pl-8 md:pl-0 md:w-1/2 md:left-0 md:pr-12 md:text-right group">
+                        <div class="absolute top-1 -left-[14px] md:left-auto md:right-[-14px] w-6 h-6 bg-black border-4 border-primary rounded-full group-hover:bg-tertiary group-hover:scale-125 transition-all duration-300 z-10 cursor-pointer" onclick="toggleTimelineDetails('tl-3')"></div>
+                        <div class="comic-panel bg-surface-container p-6 border-2 border-black inline-block text-left max-w-lg cursor-pointer skew-x-[-1deg]" onclick="toggleTimelineDetails('tl-3')">
+                            <span class="text-tertiary font-label-tech text-xs uppercase">Earth-928 | 2014</span>
+                            <h3 class="font-headline-md text-xl text-white uppercase mt-1">Spider-Society Foundation</h3>
+                            <p class="font-body-md text-sm text-on-surface-variant mt-2">Miguel O'Hara constructs the hub, gathering multiversal spider-heroes to stabilize collapsing timelines...</p>
+                            <div id="tl-3" class="hidden mt-4 border-t border-primary/20 pt-4 text-xs text-on-surface-variant space-y-2">
+                                <p>To prevent dimension-shattering paradoxes, Miguel uses holographic portals to form the Spider-Society. Members are equipped with Daypass Keypads to monitor anomalies, trap misplaced villains, and coordinate protective protocols across the Web of Destiny.</p>
+                                <span class="bg-tertiary/20 text-tertiary border border-tertiary/40 px-2 py-0.5 inline-block font-label-tech uppercase mt-2">Clearance Required: Level 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Node 4 -->
+                    <div class="relative pl-8 md:pl-0 md:w-1/2 md:left-1/2 md:pl-12 group">
+                        <div class="absolute top-1 -left-[14px] w-6 h-6 bg-black border-4 border-primary rounded-full group-hover:bg-tertiary group-hover:scale-125 transition-all duration-300 z-10 cursor-pointer" onclick="toggleTimelineDetails('tl-4')"></div>
+                        <div class="comic-panel bg-surface-container-high p-6 border-2 border-black inline-block text-left max-w-lg cursor-pointer skew-x-[3deg]" onclick="toggleTimelineDetails('tl-4')">
+                            <span class="text-tertiary font-label-tech text-xs uppercase">Earth-1610 | 2018</span>
+                            <h3 class="font-headline-md text-xl text-white uppercase mt-1">Alchemax Collider Blast</h3>
+                            <p class="font-body-md text-sm text-on-surface-variant mt-2">Kingpin fires the Super Collider, pulling multiple spider-heroes into Brooklyn and introducing Miles Morales...</p>
+                            <div id="tl-4" class="hidden mt-4 border-t border-primary/20 pt-4 text-xs text-on-surface-variant space-y-2">
+                                <p>A radioactive spider from Earth-42 bites Brooklyn teen Miles Morales. Moments later, Alchemax's particle collider fractures the timeline, pulling in Gwen Stacy, Peter B. Parker, Peni Parker, Noir, and Spider-Ham. Miles destroys the collider, setting off a sequence of multiversal shocks.</p>
+                                <span class="bg-red-500/20 text-red-500 border border-red-500/40 px-2 py-0.5 inline-block font-label-tech uppercase mt-2">Anomaly Threat Index: High</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Node 5 -->
+                    <div class="relative pl-8 md:pl-0 md:w-1/2 md:left-0 md:pr-12 md:text-right group">
+                        <div class="absolute top-1 -left-[14px] md:left-auto md:right-[-14px] w-6 h-6 bg-black border-4 border-primary rounded-full group-hover:bg-tertiary group-hover:scale-125 transition-all duration-300 z-10 cursor-pointer" onclick="toggleTimelineDetails('tl-5')"></div>
+                        <div class="comic-panel bg-surface-container p-6 border-2 border-black inline-block text-left max-w-lg cursor-pointer skew-x-[-2deg]" onclick="toggleTimelineDetails('tl-5')">
+                            <span class="text-tertiary font-label-tech text-xs uppercase">Earth-50101 | 2023</span>
+                            <h3 class="font-headline-md text-xl text-white uppercase mt-1">Canon Event Rupture</h3>
+                            <p class="font-body-md text-sm text-on-surface-variant mt-2">A major timeline disruption occurs in Mumbattan, demonstrating the vulnerability of canon events...</p>
+                            <div id="tl-5" class="hidden mt-4 border-t border-primary/20 pt-4 text-xs text-on-surface-variant space-y-2">
+                                <p>A pre-determined event involving Inspector Singh is disrupted by Miles Morales, causing a localized dimensional collapse. The Spider-Society arrives to deploy forcefields and temporal anchors, barely stabilizing Mumbattan's core timeline from total erasure.</p>
+                                <span class="bg-red-500/20 text-red-500 border border-red-500/40 px-2 py-0.5 inline-block font-label-tech uppercase mt-2">Timeline Damage: 12%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= MULTIVERSE PAGE ================= -->
+        <div id="page-multiverse" class="page-section hidden py-12">
+            <div class="max-w-7xl mx-auto px-gutter">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
+                    <div>
+                        <span class="text-primary font-label-tech text-sm uppercase tracking-widest border-b-2 border-primary pb-1">Web-Map Interface</span>
+                        <h2 class="font-headline-lg text-4xl md:text-6xl text-white uppercase italic mt-4">Spider-Verse Map</h2>
+                    </div>
+                    <div class="max-w-md w-full">
+                        <div class="relative">
+                            <input id="search-input" type="text" placeholder="Search heroes by name or dimension..." class="w-full bg-surface-container-high border-4 border-black p-4 text-white font-body-md focus:border-tertiary focus:ring-0 outline-none skew-x-[-3deg] transition-all placeholder-white/30" oninput="filterSpiderDossiers()"/>
+                            <span class="material-symbols-outlined absolute right-4 top-5 text-white/50">search</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Left Column: SVG Web Map -->
+                    <div class="lg:col-span-7 comic-panel bg-surface-container-lowest p-6 border-4 border-black skew-x-[-2deg] relative min-h-[500px] flex items-center justify-center overflow-hidden svg-grid-bg">
+                        <div class="halftone-overlay absolute inset-0 opacity-20"></div>
+                        <div class="absolute top-4 left-4 bg-black/80 px-4 py-2 border border-primary/30 text-white text-xs font-label-tech tracking-widest z-10">
+                            SECTOR MAP: ACTIVE WEB NODES (CLICK A NODE)
+                        </div>
+
+                        <!-- SVG Map Layout -->
+                        <svg class="w-full h-[450px] relative z-10" id="spider-web-svg" viewBox="0 0 600 450" preserveAspectRatio="xMidYMid meet">
+                            <!-- Outer/Inner web connecting lines -->
+                            <path d="M 300 225 L 120 100 M 300 225 L 480 100 M 300 225 L 100 250 M 300 225 L 500 270 M 300 225 L 200 370 M 300 225 L 400 370 M 300 225 L 300 50" stroke="rgba(0, 251, 251, 0.25)" stroke-width="2" stroke-dasharray="4,4"/>
+                            
+                            <!-- Web circles -->
+                            <circle cx="300" cy="225" r="70" fill="none" stroke="rgba(230, 36, 41, 0.15)" stroke-width="2"/>
+                            <circle cx="300" cy="225" r="140" fill="none" stroke="rgba(0, 251, 251, 0.1)" stroke-width="2"/>
+                            <circle cx="300" cy="225" r="210" fill="none" stroke="rgba(230, 36, 41, 0.05)" stroke-width="2"/>
+                            
+                            <!-- Spider-Web Cross-Tethers -->
+                            <path d="M 120 100 L 300 50 L 480 100 L 500 270 L 400 370 L 200 370 L 100 250 Z" fill="none" stroke="rgba(0, 251, 251, 0.15)" stroke-dasharray="2,2"/>
+                            
+                            <!-- Central Nexus Node -->
+                            <g class="cursor-pointer" onclick="selectDossier('nexus')">
+                                <circle cx="300" cy="225" r="24" fill="#000" stroke="#e62429" stroke-width="4" class="transition-all hover:r-28 hover:stroke-[#00fbfb]"/>
+                                <text x="300" y="229" font-family="Space Grotesk" font-weight="bold" font-size="10" fill="#fff" text-anchor="middle">NEXUS</text>
+                            </g>
+
+                            <!-- Node 1: Miles (Earth-1610) -->
+                            <g id="node-miles" class="spider-node cursor-pointer" onclick="selectDossier('miles')" transform="translate(120, 100)">
+                                <circle cx="0" cy="0" r="16" fill="#131313" stroke="#e62429" stroke-width="3" class="transition-all hover:scale-125"/>
+                                <text x="0" y="25" font-family="Space Grotesk" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">EARTH-1610</text>
+                            </g>
+
+                            <!-- Node 2: Gwen (Earth-65) -->
+                            <g id="node-gwen" class="spider-node cursor-pointer" onclick="selectDossier('gwen')" transform="translate(480, 100)">
+                                <circle cx="0" cy="0" r="16" fill="#131313" stroke="#ff69b4" stroke-width="3"/>
+                                <text x="0" y="25" font-family="Space Grotesk" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">EARTH-65</text>
+                            </g>
+
+                            <!-- Node 3: Miguel (Earth-928) -->
+                            <g id="node-miguel" class="spider-node cursor-pointer" onclick="selectDossier('miguel')" transform="translate(500, 270)">
+                                <circle cx="0" cy="0" r="16" fill="#131313" stroke="#00fbfb" stroke-width="3"/>
+                                <text x="0" y="25" font-family="Space Grotesk" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">EARTH-928</text>
+                            </g>
+
+                            <!-- Node 4: Peter (Earth-616) -->
+                            <g id="node-peter" class="spider-node cursor-pointer" onclick="selectDossier('peter')" transform="translate(300, 50)">
+                                <circle cx="0" cy="0" r="16" fill="#131313" stroke="#e62429" stroke-width="3"/>
+                                <text x="0" y="-20" font-family="Space Grotesk" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">EARTH-616</text>
+                            </g>
+
+                            <!-- Node 5: Noir (Earth-90214) -->
+                            <g id="node-noir" class="spider-node cursor-pointer" onclick="selectDossier('noir')" transform="translate(100, 250)">
+                                <circle cx="0" cy="0" r="16" fill="#131313" stroke="#ffffff" stroke-width="3"/>
+                                <text x="0" y="25" font-family="Space Grotesk" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">EARTH-90214</text>
+                            </g>
+
+                            <!-- Node 6: Spider-Ham (Earth-8311) -->
+                            <g id="node-ham" class="spider-node cursor-pointer" onclick="selectDossier('ham')" transform="translate(200, 370)">
+                                <circle cx="0" cy="0" r="16" fill="#131313" stroke="#f1c40f" stroke-width="3"/>
+                                <text x="0" y="25" font-family="Space Grotesk" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">EARTH-8311</text>
+                            </g>
+
+                            <!-- Node 7: Peni (Earth-14512) -->
+                            <g id="node-peni" class="spider-node cursor-pointer" onclick="selectDossier('peni')" transform="translate(400, 370)">
+                                <circle cx="0" cy="0" r="16" fill="#131313" stroke="#9b59b6" stroke-width="3"/>
+                                <text x="0" y="25" font-family="Space Grotesk" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">EARTH-14512</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Right Column: Dossier Drawer -->
+                    <div class="lg:col-span-5 flex flex-col gap-6">
+                        <div id="dossier-card" class="comic-panel bg-surface-container-high border-4 border-black p-8 relative flex-1 min-h-[480px]">
+                            <!-- Halftone & scanner overlay -->
+                            <div class="halftone-overlay absolute inset-0 opacity-20"></div>
+                            <div id="dossier-scan-line" class="absolute left-0 right-0 top-0 h-1 bg-tertiary shadow-[0_0_10px_#00fbfb] pointer-events-none hidden scan-line"></div>
+                            
+                            <div class="relative z-10 flex flex-col justify-between h-full">
+                                <div>
+                                    <div class="flex justify-between items-start">
+                                        <span id="dossier-earth" class="bg-primary text-white font-label-tech text-xs px-3 py-1 uppercase border-2 border-black skew-x-[-10deg]">
+                                            EARTH-1610
+                                        </span>
+                                        <span id="dossier-status" class="text-tertiary font-label-tech text-xs uppercase tracking-widest flex items-center gap-1">
+                                            <span class="w-2 h-2 bg-tertiary rounded-full animate-ping"></span> STABLE
+                                        </span>
+                                    </div>
+
+                                    <h3 id="dossier-name" class="font-headline-md text-3xl text-white uppercase italic mt-4 tracking-tighter border-b-2 border-primary/20 pb-2">
+                                        Miles Morales
+                                    </h3>
+                                    
+                                    <!-- Dynamic Dossier Graphic / Symbol Placeholder -->
+                                    <div class="my-4 flex items-center justify-center bg-black/60 h-28 border border-white/10 relative overflow-hidden">
+                                        <div class="absolute inset-0 svg-grid-bg opacity-30"></div>
+                                        <svg id="dossier-symbol-svg" class="w-16 h-16 text-primary drop-shadow-[0_0_8px_var(--theme-primary)]" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                                        </svg>
+                                    </div>
+
+                                    <p id="dossier-bio" class="font-body-md text-sm text-on-surface-variant leading-relaxed">
+                                        Select an active dimension node from the web-map to decrypt arachnid operator dossier metrics.
+                                    </p>
+                                </div>
+
+                                <div class="mt-6 space-y-4">
+                                    <h4 class="font-label-tech text-xs uppercase text-white tracking-widest">TACTICAL STATS</h4>
+                                    <!-- Stats Grid -->
+                                    <div class="space-y-3" id="dossier-stats-container">
+                                        <!-- Stat 1 -->
+                                        <div>
+                                            <div class="flex justify-between text-xs font-label-tech text-on-surface-variant mb-1">
+                                                <span>AGILITY</span>
+                                                <span id="stat-agility-val">95%</span>
+                                            </div>
+                                            <div class="w-full bg-black h-2.5 border border-white/20">
+                                                <div id="stat-agility-bar" class="bg-primary h-full transition-all duration-700" style="width: 95%"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Stat 2 -->
+                                        <div>
+                                            <div class="flex justify-between text-xs font-label-tech text-on-surface-variant mb-1">
+                                                <span>STRENGTH</span>
+                                                <span id="stat-strength-val">88%</span>
+                                            </div>
+                                            <div class="w-full bg-black h-2.5 border border-white/20">
+                                                <div id="stat-strength-bar" class="bg-primary h-full transition-all duration-700" style="width: 88%"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Stat 3 -->
+                                        <div>
+                                            <div class="flex justify-between text-xs font-label-tech text-on-surface-variant mb-1">
+                                                <span>WEB-TECH</span>
+                                                <span id="stat-tech-val">90%</span>
+                                            </div>
+                                            <div class="w-full bg-black h-2.5 border border-white/20">
+                                                <div id="stat-tech-bar" class="bg-tertiary h-full transition-all duration-700" style="width: 90%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button class="w-full bg-black hover:bg-primary-container text-primary hover:text-white border-2 border-primary hover:border-black p-3 font-label-tech text-xs uppercase tracking-widest skew-x-[-3deg] transition-all flex items-center justify-center gap-2" onclick="scanDossier()">
+                                        <span class="material-symbols-outlined text-sm">qr_code_scanner</span> DECRYPT LORE Blueprints
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SUITS PAGE ================= -->
+        <div id="page-suits" class="page-section hidden py-12">
+            <div class="max-w-7xl mx-auto px-gutter">
+                <div class="text-center mb-12">
+                    <span class="text-primary font-label-tech text-sm uppercase tracking-widest border-b-2 border-primary pb-1">Suit Workbench</span>
+                    <h2 class="font-headline-lg text-5xl md:text-6xl text-white uppercase italic mt-4">Arachnid Armor Vault</h2>
+                    <p class="text-on-surface-variant font-body-lg max-w-xl mx-auto mt-2">Adjust weave composition, visor hue, and chest decal metrics to build custom dimension wear.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Left Column: Suit Model Blueprint View -->
+                    <div class="lg:col-span-6 comic-panel bg-surface-container-lowest p-8 border-4 border-black skew-x-[-2deg] relative flex flex-col justify-between overflow-hidden">
+                        <div class="halftone-overlay absolute inset-0 opacity-15"></div>
+                        <div class="absolute inset-0 svg-grid-bg opacity-20 pointer-events-none"></div>
+                        
+                        <!-- Glowing Scan Bar -->
+                        <div id="suit-scan-bar" class="absolute left-0 right-0 top-0 h-1.5 bg-tertiary shadow-[0_0_15px_#00fbfb] pointer-events-none scan-line"></div>
+                        
+                        <div class="relative z-10 flex justify-between items-start mb-6">
+                            <span class="bg-black text-white font-label-tech text-xs px-3 py-1 uppercase border-2 border-white/20">BLUEPRINT ANALYSIS</span>
+                            <div class="text-right text-xs font-label-tech text-tertiary uppercase" id="suit-status-terminal">[ACTIVE PREVIEW] VANGUARD.2099</div>
+                        </div>
+
+                        <!-- Stylized SVG Suit Canvas -->
+                        <div class="relative z-10 flex justify-center items-center my-6 h-[400px]">
+                            <svg id="suit-canvas-svg" class="w-64 h-full" viewBox="0 0 200 300" fill="none">
+                                <!-- Suit Mask Silhouette -->
+                                <path id="suit-body" d="M 60 220 L 60 140 C 60 70, 140 70, 140 140 L 140 220 L 170 300 L 30 300 Z" fill="#181818" stroke="#333" stroke-width="4"/>
+                                
+                                <!-- Suit Chest Accent/Secondary Panels -->
+                                <path id="suit-accent" d="M 70 170 L 100 240 L 130 170 L 100 200 Z" fill="#e62429" stroke="#000" stroke-width="2"/>
+                                
+                                <!-- Suit Web Pattern Overlay -->
+                                <path id="suit-webbing" d="M 100 70 L 100 300 M 60 140 L 140 140 M 70 110 Q 100 130 130 110 M 60 160 Q 100 190 140 160 M 65 210 Q 100 240 135 210" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+                                
+                                <!-- Large Chest Spider Decal -->
+                                <g id="suit-logo-group">
+                                    <path id="suit-logo" d="M 100 200 L 100 225 M 100 208 L 85 195 M 100 208 L 115 195 M 100 216 L 80 225 M 100 216 L 120 225 M 100 222 L 85 240 M 100 222 L 115 240" stroke="#e62429" stroke-width="4" stroke-linecap="round"/>
+                                    <circle id="suit-logo-body" cx="100" cy="212" r="6" fill="#e62429"/>
+                                </g>
+
+                                <!-- Cyber Helmet Eyes (Visor) -->
+                                <path id="suit-eyes-left" d="M 75 125 C 80 125, 95 130, 95 140 C 95 142, 85 142, 72 133 C 70 130, 71 125, 75 125 Z" fill="#00fbfb" stroke="#000" stroke-width="2" class="drop-shadow-[0_0_8px_#00fbfb]"/>
+                                <path id="suit-eyes-right" d="M 125 125 C 120 125, 105 130, 105 140 C 105 142, 115 142, 128 133 C 130 130, 129 125, 125 125 Z" fill="#00fbfb" stroke="#000" stroke-width="2" class="drop-shadow-[0_0_8px_#00fbfb]"/>
+                            </svg>
+                        </div>
+
+                        <!-- Console text diagnostic -->
+                        <div class="relative z-10 bg-black/80 p-4 border border-white/10 font-label-tech text-xs text-green-500 space-y-1 h-24 overflow-y-auto" id="suit-console">
+                            <div>&gt; VAULT DIAGNOSTIC INITIATED...</div>
+                            <div>&gt; DETECTING SUIT COMPOSITION MATRIX... OK</div>
+                            <div>&gt; LINK INTEGRATED: 100% SECURE. Ready for deployment.</div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Preset select & Customizer Workbench -->
+                    <div class="lg:col-span-6 flex flex-col gap-6">
+                        <!-- Presets Panel -->
+                        <div class="comic-panel bg-surface-container p-6 border-4 border-black skew-x-[1deg]">
+                            <h3 class="font-headline-md text-xl text-white uppercase italic mb-4">Preset Configurations</h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                <button class="bg-black hover:bg-primary border-2 border-primary text-white p-3 font-label-tech text-xs uppercase tracking-widest transition-all" onclick="applySuitPreset('vanguard')">Vanguard</button>
+                                <button class="bg-black hover:bg-primary border-2 border-primary text-white p-3 font-label-tech text-xs uppercase tracking-widest transition-all" onclick="applySuitPreset('classic')">Classic</button>
+                                <button class="bg-black hover:bg-primary border-2 border-primary text-white p-3 font-label-tech text-xs uppercase tracking-widest transition-all" onclick="applySuitPreset('noir')">Stealth</button>
+                                <button class="bg-black hover:bg-primary border-2 border-primary text-white p-3 font-label-tech text-xs uppercase tracking-widest transition-all" onclick="applySuitPreset('punk')">Spider-Punk</button>
+                            </div>
+                        </div>
+
+                        <!-- Suit Customizer Panel -->
+                        <div class="comic-panel bg-surface-container-high p-8 border-4 border-black skew-x-[-1deg] flex-1">
+                            <h3 class="font-headline-md text-2xl text-white uppercase italic mb-6">CUSTOM WORKBENCH</h3>
+                            
+                            <div class="space-y-6">
+                                <!-- Colors Selector -->
+                                <div>
+                                    <h4 class="font-label-tech text-xs uppercase text-white tracking-widest mb-3">Color Calibration</h4>
+                                    <div class="grid grid-cols-3 gap-4">
+                                        <div>
+                                            <label class="text-xs font-label-tech text-on-surface-variant block mb-1">SUIT BASE</label>
+                                            <input id="suit-color-base" type="color" value="#181818" class="w-full h-10 bg-black border-2 border-black cursor-pointer" oninput="updateSuitCustomColors()"/>
+                                        </div>
+                                        <div>
+                                            <label class="text-xs font-label-tech text-on-surface-variant block mb-1">DECALS/LOGO</label>
+                                            <input id="suit-color-accent" type="color" value="#e62429" class="w-full h-10 bg-black border-2 border-black cursor-pointer" oninput="updateSuitCustomColors()"/>
+                                        </div>
+                                        <div>
+                                            <label class="text-xs font-label-tech text-on-surface-variant block mb-1">EYE VISOR</label>
+                                            <input id="suit-color-eyes" type="color" value="#00fbfb" class="w-full h-10 bg-black border-2 border-black cursor-pointer" oninput="updateSuitCustomColors()"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Texture patterns -->
+                                <div>
+                                    <h4 class="font-label-tech text-xs uppercase text-white tracking-widest mb-3">Suit Weave Texture</h4>
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <button id="btn-texture-web" class="bg-black hover:bg-primary-container text-white py-2 border-2 border-primary font-label-tech text-xs uppercase tracking-wider" onclick="updateSuitTexture('web')">Web Grid</button>
+                                        <button id="btn-texture-carbon" class="bg-black/40 text-white/50 py-2 border-2 border-white/10 font-label-tech text-xs uppercase tracking-wider" onclick="updateSuitTexture('carbon')">Carbon Core</button>
+                                        <button id="btn-texture-clean" class="bg-black/40 text-white/50 py-2 border-2 border-white/10 font-label-tech text-xs uppercase tracking-wider" onclick="updateSuitTexture('clean')">Clean Slate</button>
+                                    </div>
+                                </div>
+
+                                <!-- Stat Modifiers readout -->
+                                <div>
+                                    <h4 class="font-label-tech text-xs uppercase text-white tracking-widest mb-3">Suit Properties</h4>
+                                    <div class="grid grid-cols-3 gap-4 text-center">
+                                        <div class="bg-black/40 p-3 border border-white/10">
+                                            <div class="text-xs font-label-tech text-on-surface-variant">TRAVERSAL</div>
+                                            <div id="stat-suit-traversal" class="text-xl font-headline-md text-white mt-1">94</div>
+                                        </div>
+                                        <div class="bg-black/40 p-3 border border-white/10">
+                                            <div class="text-xs font-label-tech text-on-surface-variant">DEFENSE</div>
+                                            <div id="stat-suit-defense" class="text-xl font-headline-md text-white mt-1">85</div>
+                                        </div>
+                                        <div class="bg-black/40 p-3 border border-white/10">
+                                            <div class="text-xs font-label-tech text-on-surface-variant">STEALTH</div>
+                                            <div id="stat-suit-stealth" class="text-xl font-headline-md text-white mt-1">72</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Equip Button -->
+                                <button class="w-full bg-primary-container text-white hover:bg-tertiary hover:text-black border-4 border-black p-4 font-headline-md text-xl uppercase tracking-widest skew-x-[-3deg] transition-all flex items-center justify-center gap-2" onclick="equipSuitConfiguration()">
+                                    <span class="material-symbols-outlined text-2xl">workspace_premium</span> EQUIP SUIT PROTOCOL
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= GADGET LAB PAGE ================= -->
+        <div id="page-gadgets" class="page-section hidden py-12">
+            <div class="max-w-7xl mx-auto px-gutter">
+                <div class="text-center mb-12">
+                    <span class="text-primary font-label-tech text-sm uppercase tracking-widest border-b-2 border-primary pb-1">Web Shooter R&D</span>
+                    <h2 class="font-headline-lg text-5xl md:text-6xl text-white uppercase italic mt-4">Web-Fluid Synthesizer</h2>
+                    <p class="text-on-surface-variant font-body-lg max-w-xl mx-auto mt-2">Adjust chemical polymer length, tensile binders, and ionic electrical charges to practice web-slinging.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Synthesizer Config Controls -->
+                    <div class="lg:col-span-5 comic-panel bg-surface-container-high p-8 border-4 border-black skew-x-[-2deg] flex flex-col justify-between">
+                        <div class="halftone-overlay absolute inset-0 opacity-20"></div>
+                        <div class="relative z-10">
+                            <h3 class="font-headline-md text-2xl text-white uppercase italic mb-6">Synthesis Dashboard</h3>
+                            
+                            <div class="space-y-6">
+                                <!-- Polymer slider -->
+                                <div>
+                                    <div class="flex justify-between text-xs font-label-tech text-white mb-2">
+                                        <span>POLYMER CHAIN LENGTH</span>
+                                        <span id="slider-polymer-val">65%</span>
+                                    </div>
+                                    <input id="slider-polymer" type="range" min="10" max="100" value="65" class="w-full h-2 bg-black rounded-lg appearance-none cursor-pointer accent-primary" oninput="updateChemicalSynthesis()"/>
+                                </div>
+
+                                <!-- Tensile strength slider -->
+                                <div>
+                                    <div class="flex justify-between text-xs font-label-tech text-white mb-2">
+                                        <span>TENSILE COMPONENT MATRIX</span>
+                                        <span id="slider-tensile-val">70%</span>
+                                    </div>
+                                    <input id="slider-tensile" type="range" min="10" max="100" value="70" class="w-full h-2 bg-black rounded-lg appearance-none cursor-pointer accent-primary" oninput="updateChemicalSynthesis()"/>
+                                </div>
+
+                                <!-- Ionic charge slider -->
+                                <div>
+                                    <div class="flex justify-between text-xs font-label-tech text-white mb-2">
+                                        <span>IONIC ELECTRIC CHARGE</span>
+                                        <span id="slider-charge-val">30%</span>
+                                    </div>
+                                    <input id="slider-charge" type="range" min="0" max="100" value="30" class="w-full h-2 bg-black rounded-lg appearance-none cursor-pointer accent-primary" oninput="updateChemicalSynthesis()"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 mt-8 space-y-4">
+                            <!-- Formula Name readout -->
+                            <div class="bg-black/80 p-4 border border-white/20 text-center font-label-tech">
+                                <span class="text-xs text-on-surface-variant block mb-1">SYNTHESIZED WEAPON FLUID:</span>
+                                <span id="formula-name" class="text-lg font-headline-md text-tertiary uppercase glitch-text">Standard Fluid v4.2</span>
+                            </div>
+
+                            <button class="w-full bg-primary-container text-white border-2 border-black hover:bg-tertiary hover:text-black py-3 font-label-tech text-xs uppercase tracking-widest skew-x-[-3deg] transition-all flex items-center justify-center gap-2" onclick="injectFormulaBuffer()">
+                                <span class="material-symbols-outlined text-sm">vaccines</span> INJECT BUFFER TO WEAPONS
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Web Shooting Firing Range -->
+                    <div class="lg:col-span-7 comic-panel bg-surface-container-lowest p-6 border-4 border-black skew-x-[1deg] flex flex-col min-h-[500px]">
+                        <div class="flex justify-between items-center mb-4 bg-black/50 p-3 border border-white/10">
+                            <span class="font-label-tech text-xs text-white uppercase flex items-center gap-1">
+                                <span class="w-2.5 h-2.5 bg-red-500 rounded-full animate-ping"></span> FIRING RANGE SIMULATOR
+                            </span>
+                            <div class="flex gap-2">
+                                <button class="bg-black hover:bg-primary-container border border-primary text-white text-xs px-3 py-1 font-label-tech uppercase" onclick="resetRangeAnomalies()">RESET TARGETS</button>
+                                <button id="hud-toggle-btn" class="bg-black hover:bg-primary-container border border-primary text-white text-xs px-3 py-1 font-label-tech uppercase" onclick="toggleNeuralHud()">HUD SCANNER</button>
+                            </div>
+                        </div>
+
+                        <!-- Firing Range Canvas -->
+                        <div class="relative flex-1 bg-black border-2 border-white/10 overflow-hidden min-h-[380px]" id="canvas-container">
+                            <div class="absolute inset-0 svg-grid-bg opacity-10 pointer-events-none"></div>
+                            <div class="absolute top-2 left-2 pointer-events-none text-[9px] font-label-tech text-white/40 space-y-1">
+                                <div>Click & drag to sling webs and tie items together.</div>
+                                <div>Tether targets to steel wall anchor pins to stabilize.</div>
+                            </div>
+                            <canvas id="firingRangeCanvas" class="w-full h-full cursor-crosshair"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= STABILIZE PAGE ================= -->
+        <div id="page-stabilize" class="page-section hidden py-12">
+            <div class="max-w-7xl mx-auto px-gutter">
+                <div class="text-center mb-8">
+                    <span class="text-red-500 font-label-tech text-sm uppercase tracking-widest border-b-2 border-red-500 pb-1 animate-pulse">SYSTEM WARNING</span>
+                    <h2 class="font-headline-lg text-5xl md:text-6xl text-white uppercase italic mt-4 glitch-text">Chrono-Stabilizer</h2>
+                    <p class="text-on-surface-variant font-body-lg max-w-xl mx-auto mt-2">timeline sync malfunction. Calibrate frequencies, bypass firewalls, and close rifts to avert timeline collapse.</p>
+                </div>
+
+                <!-- Main Game Console -->
+                <div id="stabilizer-game-screen" class="comic-panel bg-surface-container-lowest p-8 border-4 border-red-600 skew-x-[-1deg] relative min-h-[500px]">
+                    <div class="halftone-overlay absolute inset-0 opacity-20"></div>
+                    <div class="absolute inset-0 svg-grid-bg opacity-10 pointer-events-none"></div>
+
+                    <!-- Intro / Game State overlays -->
+                    <div id="game-intro-overlay" class="absolute inset-0 bg-black/95 z-30 flex flex-col items-center justify-center text-center p-6">
+                        <span class="material-symbols-outlined text-red-500 text-6xl animate-pulse">report_problem</span>
+                        <h3 class="font-headline-lg text-white text-4xl uppercase mt-4">DIMENSIONAL COLLAPSE IMMINENT</h3>
+                        <p class="font-body-md text-on-surface-variant max-w-md mt-2">The Web of Destiny is splitting. You have 20 seconds to stabilize dimensional frequencies, override the firewall, and clear timeline rifts.</p>
+                        <button class="mt-8 bg-red-600 text-white font-headline-md text-xl uppercase px-8 py-4 border-4 border-black hover:bg-tertiary hover:text-black transition-all shadow-[6px_6px_0_#000]" onclick="startStabilizerGame()">
+                            START SYSTEM STABILIZER
+                        </button>
+                    </div>
+
+                    <div id="game-success-overlay" class="absolute inset-0 bg-black/95 z-30 flex flex-col items-center justify-center text-center p-6 hidden">
+                        <span class="material-symbols-outlined text-green-500 text-6xl animate-bounce">verified_user</span>
+                        <h3 class="font-headline-lg text-white text-4xl uppercase mt-4">TIMELINE STABILIZED</h3>
+                        <p class="font-body-md text-on-surface-variant max-w-md mt-2">Spider-Society networks secured. Level 2 security clearance credentials successfully compiled.</p>
+                        
+                        <!-- Rotating 3D Clearance Badge -->
+                        <div class="w-40 h-40 mt-6 relative flex items-center justify-center border-4 border-green-500 bg-surface-container skew-x-[-6deg] shadow-[8px_8px_0_#000]">
+                            <div class="halftone-overlay absolute inset-0 opacity-30"></div>
+                            <div class="text-center">
+                                <span class="material-symbols-outlined text-green-500 text-4xl mb-1">security</span>
+                                <div class="font-headline-md text-white text-sm uppercase">SOCIETY</div>
+                                <div class="font-label-tech text-green-400 text-[10px] tracking-widest font-bold">LEVEL 2 CLEARANCE</div>
+                            </div>
+                        </div>
+
+                        <button class="mt-8 bg-green-600 text-white font-label-tech text-xs uppercase tracking-widest px-6 py-3 border-2 border-black hover:bg-primary-container" onclick="restartStabilizerGame()">
+                            DISMISS / TEST AGAIN
+                        </button>
+                    </div>
+
+                    <div id="game-failure-overlay" class="absolute inset-0 bg-black/95 z-30 flex flex-col items-center justify-center text-center p-6 hidden">
+                        <span class="material-symbols-outlined text-red-500 text-6xl animate-ping">error</span>
+                        <h3 class="font-headline-lg text-red-500 text-4xl uppercase mt-4">TIMELINE COLLAPSED</h3>
+                        <p class="font-body-md text-on-surface-variant max-w-md mt-2">Ruptures exceeded safety thresholds. Re-align temporal anchors to try again.</p>
+                        <button class="mt-8 bg-red-600 text-white font-headline-md text-xl uppercase px-8 py-4 border-4 border-black hover:bg-tertiary hover:text-black transition-all" onclick="restartStabilizerGame()">
+                            REBOOT CHRONO-STABILIZER
+                        </button>
+                    </div>
+
+                    <!-- Active HUD Dashboard -->
+                    <div class="relative z-10 flex flex-col justify-between min-h-[460px]">
+                        <!-- Top HUD Bar -->
+                        <div class="flex justify-between items-center border-b border-red-500/20 pb-4">
+                            <div>
+                                <span class="text-xs font-label-tech text-white/50 block">CHRONO STATUS</span>
+                                <span class="text-red-500 font-label-tech text-sm uppercase tracking-widest font-bold">ANOMALY DETECTED</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="text-xs font-label-tech text-white/50 block">TEMPORAL WINDOW</span>
+                                <span id="game-timer" class="text-4xl font-headline-md text-red-500 italic glitch-text">20.00s</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs font-label-tech text-white/50 block">STABILIZATION PROGRESS</span>
+                                <span id="game-progress-percent" class="text-white font-headline-md text-lg">0%</span>
+                            </div>
+                        </div>
+
+                        <!-- 3 Mini Panels Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-6 flex-1">
+                            <!-- Panel 1: Match Freq -->
+                            <div class="border-2 border-red-500/30 bg-surface-container p-4 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-xs font-label-tech text-white">1. FREQUENCY SYNC</span>
+                                        <span id="badge-task-freq" class="text-[9px] font-label-tech bg-red-900 text-red-300 px-2 py-0.5 uppercase">UNSYNCED</span>
+                                    </div>
+                                    <div class="h-24 bg-black border border-white/10 relative overflow-hidden flex items-center justify-center">
+                                        <!-- Wave canvas -->
+                                        <canvas id="freqCanvas" class="w-full h-full"></canvas>
+                                    </div>
+                                </div>
+                                <div class="mt-4 space-y-3">
+                                    <div>
+                                        <label class="text-[9px] font-label-tech text-on-surface-variant block mb-1">WAVE FREQUENCY</label>
+                                        <input id="slider-freq" type="range" min="1" max="10" step="0.1" value="2" class="w-full h-1 bg-black rounded-lg appearance-none cursor-pointer accent-red-500" oninput="updateFreqGame()"/>
+                                    </div>
+                                    <div>
+                                        <label class="text-[9px] font-label-tech text-on-surface-variant block mb-1">WAVE AMPLITUDE</label>
+                                        <input id="slider-amp" type="range" min="5" max="30" value="10" class="w-full h-1 bg-black rounded-lg appearance-none cursor-pointer accent-red-500" oninput="updateFreqGame()"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Panel 2: Memory override -->
+                            <div class="border-2 border-red-500/30 bg-surface-container p-4 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="text-xs font-label-tech text-white">2. FIREWALL BYPASS</span>
+                                        <span id="badge-task-mem" class="text-[9px] font-label-tech bg-red-900 text-red-300 px-2 py-0.5 uppercase">LOCKED</span>
+                                    </div>
+                                    
+                                    <!-- 3x3 Memory Grid -->
+                                    <div class="grid grid-cols-3 gap-2" id="memory-grid">
+                                        <!-- Will populate dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Panel 3: Deflect rifts -->
+                            <div class="border-2 border-red-500/30 bg-surface-container p-4 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-xs font-label-tech text-white">3. CLOSE TEMPORAL RIFTS</span>
+                                        <span id="badge-task-rifts" class="text-[9px] font-label-tech bg-red-900 text-red-300 px-2 py-0.5 uppercase">0 / 6 CLOSED</span>
+                                    </div>
+                                    <div class="h-44 bg-black border border-white/10 relative cursor-pointer" id="rifts-radar-container">
+                                        <div class="absolute inset-0 svg-grid-bg opacity-10"></div>
+                                        <!-- Radar ring -->
+                                        <div class="absolute inset-4 border border-red-500/10 rounded-full frequency-pulse"></div>
+                                        <!-- Target nodes container -->
+                                        <div id="rifts-nodes-wrapper" class="absolute inset-0"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative w-full border-t-8 border-primary skew-y-[-1deg] bg-surface-container-lowest overflow-hidden mt-12">
+        <div class="bg-[url('halftone-pattern')] bg-repeat opacity-90 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-unit max-w-7xl mx-auto w-full">
+                <div class="font-headline-md text-headline-md text-primary">
+                    SPIDER-VERSE CENTRAL
+                </div>
+                <div class="flex flex-wrap justify-center gap-8 my-8 md:my-0">
+                    <a class="font-label-tech text-label-tech text-on-surface-variant hover:text-primary hover:translate-x-1 transition-all" href="#" onclick="alert('Spider-Society Protocol: All web metrics encrypted.'); return false;">Privacy Protocol</a>
+                    <a class="font-label-tech text-label-tech text-on-surface-variant hover:text-primary hover:translate-x-1 transition-all" href="#" onclick="navigateToPage('suits')">Web-Code</a>
+                    <a class="font-label-tech text-label-tech text-on-surface-variant hover:text-primary hover:translate-x-1 transition-all" href="#" onclick="alert('Oracle Oracle: Reach terminal communications via the Firing range.'); return false;">Contact Oracle</a>
+                </div>
+                <div class="font-label-tech text-label-tech text-on-surface-variant text-center md:text-right">
+                    © 2026 SPIDER-VERSE FAN PROJECT. ALL RIGHTS RESERVED.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Audio & Interactive Engine scripts -->
+    <script>
+        // ================= AUDIO SYNTHESIS SYSTEM =================
+        let audioCtx = null;
+        let soundEnabled = true;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function toggleSound() {
+            initAudio();
+            soundEnabled = !soundEnabled;
+            const soundIcon = document.getElementById('sound-icon');
+            if (soundEnabled) {
+                soundIcon.textContent = 'volume_up';
+                playClickSound();
+            } else {
+                soundIcon.textContent = 'volume_off';
+            }
+        }
+
+        function playThwipSound() {
+            if (!soundEnabled) return;
+            initAudio();
+            try {
+                const now = audioCtx.currentTime;
+                
+                // White noise buffer
+                const bufferSize = audioCtx.sampleRate * 0.15; // 150ms
+                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    data[i] = Math.random() * 2 - 1;
+                }
+                
+                const noiseNode = audioCtx.createBufferSource();
+                noiseNode.buffer = buffer;
+                
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = 'bandpass';
+                filter.Q.value = 12;
+                filter.frequency.setValueAtTime(9000, now);
+                filter.frequency.exponentialRampToValueAtTime(150, now + 0.15);
+                
+                const gainNode = audioCtx.createGain();
+                gainNode.gain.setValueAtTime(0.25, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+                
+                // Tri Oscillator zip
+                const osc = audioCtx.createOscillator();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(250, now);
+                osc.frequency.exponentialRampToValueAtTime(1500, now + 0.08);
+                osc.frequency.exponentialRampToValueAtTime(150, now + 0.15);
+                
+                const oscGain = audioCtx.createGain();
+                oscGain.gain.setValueAtTime(0.12, now);
+                oscGain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+                
+                noiseNode.connect(filter);
+                filter.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                osc.connect(oscGain);
+                oscGain.connect(audioCtx.destination);
+                
+                noiseNode.start(now);
+                osc.start(now);
+                noiseNode.stop(now + 0.15);
+                osc.stop(now + 0.15);
+            } catch (e) {
+                console.warn(e);
+            }
+        }
+
+        function playClickSound() {
+            if (!soundEnabled) return;
+            initAudio();
+            try {
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(1000, now);
+                osc.frequency.exponentialRampToValueAtTime(500, now + 0.04);
+                
+                gain.gain.setValueAtTime(0.08, now);
+                gain.gain.exponentialRampToValueAtTime(0.005, now + 0.04);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start(now);
+                osc.stop(now + 0.04);
+            } catch (e) {}
+        }
+
+        function playGlitchSound() {
+            if (!soundEnabled) return;
+            initAudio();
+            try {
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(120, now);
+                osc.frequency.setValueAtTime(320, now + 0.06);
+                osc.frequency.setValueAtTime(180, now + 0.12);
+                
+                gain.gain.setValueAtTime(0.06, now);
+                gain.gain.exponentialRampToValueAtTime(0.005, now + 0.18);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start(now);
+                osc.stop(now + 0.18);
+            } catch (e) {}
+        }
+
+        function playUnlockSound() {
+            if (!soundEnabled) return;
+            initAudio();
+            try {
+                const now = audioCtx.currentTime;
+                const notes = [523.25, 659.25, 783.99, 1046.50]; // Chord C5 E5 G5 C6
+                notes.forEach((f, idx) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(f, now + idx * 0.05);
+                    
+                    gain.gain.setValueAtTime(0, now);
+                    gain.gain.setValueAtTime(0.07, now + idx * 0.05);
+                    gain.gain.exponentialRampToValueAtTime(0.005, now + idx * 0.05 + 0.12);
+                    
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    
+                    osc.start(now + idx * 0.05);
+                    osc.stop(now + idx * 0.05 + 0.15);
+                });
+            } catch (e) {}
+        }
+
+        // ================= ROUTING & TRANSITION CONTROLS =================
+        function navigateToPage(pageId) {
+            initAudio();
+            playGlitchSound();
+            
+            // Trigger fullscreen glitch transition overlay
+            const transitionEl = document.getElementById('glitch-transition');
+            transitionEl.classList.add('glitch-flicker');
+            transitionEl.style.opacity = '1';
+            
+            setTimeout(() => {
+                // Swap active page elements
+                document.querySelectorAll('.page-section').forEach(sec => {
+                    sec.classList.add('hidden');
+                });
+                document.getElementById(`page-${pageId}`).classList.remove('hidden');
+                
+                // Update nav styling
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.classList.remove('active-nav-link');
+                });
+                
+                // Find and highlight matching link
+                const btns = Array.from(document.querySelectorAll('.nav-btn'));
+                const activeBtn = btns.find(b => b.textContent.toLowerCase().includes(pageId === 'home' ? 'home' : pageId));
+                if (activeBtn) {
+                    activeBtn.classList.add('active-nav-link');
+                }
+
+                // If loading specific page, trigger local resets
+                if (pageId === 'gadgets') {
+                    initFiringRangePhysics();
+                }
+            }, 150);
+
+            setTimeout(() => {
+                transitionEl.style.opacity = '0';
+                transitionEl.classList.remove('glitch-flicker');
+            }, 300);
+        }
+
+        // Custom Cursor trailing
+        const cursor = document.getElementById('cursor');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.transform = `translate(${mouseX - 10}px, ${mouseY - 10}px)`;
+        });
+
+        // Trigger clicks audio globally
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.spider-node') || e.target.closest('.comic-panel')) {
+                playClickSound();
+            }
+        });
+
+        // ================= MULTIVERSE DOSSIERS SYSTEM =================
+        const DOSSIERS = {
+            nexus: {
+                earth: "EARTH-0",
+                name: "Web of Life Nexus",
+                status: "UNSTABLE",
+                bio: "The structural nexus of the Arachnid Multiverse. It branches outwards to feed temporal life-energy to all timelines. Currently experiencing 94% anomaly stress.",
+                stats: { agility: 50, strength: 50, tech: 100 },
+                color: "#e62429",
+                svgSymbol: `<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>`
+            },
+            miles: {
+                earth: "EARTH-1610",
+                name: "Miles Morales",
+                status: "ACTIVE",
+                bio: "Brooklyn teenager who inherits the mantle of Spider-Man. Gained unique powers including bio-electric venom strikes, active camo-invisibility, and highly elastic traversal matrices.",
+                stats: { agility: 96, strength: 86, tech: 90 },
+                color: "#e62429",
+                svgSymbol: `<path d="M12 2L2 22h20L12 2zm0 3.99L19.53 19H4.47L12 5.99zM13 16h-2v2h2v-2zm0-6h-2v4h2v-4z"/>`
+            },
+            gwen: {
+                earth: "EARTH-65",
+                name: "Gwen Stacy",
+                status: "ACTIVE",
+                bio: "Drummer and costumed defender Ghost-Spider. Uses rhythm-based traversal, lightweight dynamic suit shielding, and high-response webbing customizers.",
+                stats: { agility: 98, strength: 82, tech: 84 },
+                color: "#ff69b4",
+                svgSymbol: `<path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>`
+            },
+            miguel: {
+                earth: "EARTH-928",
+                name: "Miguel O'Hara",
+                status: "SOCIETY LEADER",
+                bio: "Leader of the Spider-Society in Nueva York. Features genetic talons, organic web shooters, dimensional teleport locks, and reinforced laser-web wear.",
+                stats: { agility: 92, strength: 95, tech: 98 },
+                color: "#00fbfb",
+                svgSymbol: `<path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>`
+            },
+            peter: {
+                earth: "EARTH-616",
+                name: "Peter Parker",
+                status: "ACTIVE",
+                bio: "The prime Spider-Man, providing a baseline template for arachnid traversal code. Highly balanced capabilities, standard web shooters, and deep combat experience.",
+                stats: { agility: 94, strength: 90, tech: 90 },
+                color: "#e62429",
+                svgSymbol: `<path d="M12 22c5.52 0 10-4.48 10-10S17.52 2 12 2 2 6.48 2 12s4.48 10 10 10zm1-10h3l-4 4-4-4h3V8h2v4z"/>`
+            },
+            noir: {
+                earth: "EARTH-90214",
+                name: "Spider-Man Noir",
+                status: "MONOCHROME",
+                bio: "1933 era investigator. Operates under total shadow. Employs organic webbing, heavy protective trench gear, and utilizes retro investigation tactics.",
+                stats: { agility: 88, strength: 89, tech: 70 },
+                color: "#ffffff",
+                svgSymbol: `<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.66 0 3 1.34 3 3v1.9h1c.88 0 1.66.59 1.9 1.41-.66 2.01-2.12 3.64-4 4.08z"/>`
+            },
+            ham: {
+                earth: "EARTH-8311",
+                name: "Spider-Ham",
+                status: "CARTOON ANOMALY",
+                bio: "Peter Porker, cartoon champion. Defies classical physics, pulls oversized mallets out of pockets, and possesses high resilience to blunt structural impacts.",
+                stats: { agility: 90, strength: 80, tech: 65 },
+                color: "#f1c40f",
+                svgSymbol: `<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/>`
+            },
+            peni: {
+                earth: "EARTH-14512",
+                name: "Peni Parker & SP//dr",
+                status: "MECH LINK",
+                bio: "Controls a massive mechanical suit driven by a neural spider link. Gained mechanical firepower, steel shields, and custom Alchemax coding networks.",
+                stats: { agility: 82, strength: 98, tech: 96 },
+                color: "#9b59b6",
+                svgSymbol: `<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/>`
+            }
+        };
+
+        let selectedDossierId = 'miles';
+
+        function selectDossier(id) {
+            selectedDossierId = id;
+            const data = DOSSIERS[id];
+            if (!data) return;
+
+            playThwipSound();
+            
+            // Highlight node in SVG by scaling stroke
+            document.querySelectorAll('.spider-node circle').forEach(c => {
+                c.setAttribute('r', '16');
+                c.setAttribute('stroke-width', '3');
+            });
+            const nodeG = document.getElementById(`node-${id}`);
+            if (nodeG) {
+                const c = nodeG.querySelector('circle');
+                c.setAttribute('r', '22');
+                c.setAttribute('stroke-width', '5');
+            }
+
+            // Animate card scan line
+            const scanLine = document.getElementById('dossier-scan-line');
+            scanLine.classList.remove('hidden');
+            setTimeout(() => { scanLine.classList.add('hidden'); }, 3000);
+
+            // Populate Dossier
+            document.getElementById('dossier-earth').textContent = data.earth;
+            document.getElementById('dossier-status').innerHTML = `<span class="w-2 h-2 bg-tertiary rounded-full ${data.status === 'UNSTABLE' ? 'bg-red-500 animate-ping' : 'bg-tertiary animate-ping'}"></span> ${data.status}`;
+            document.getElementById('dossier-name').textContent = data.name;
+            document.getElementById('dossier-bio').textContent = data.bio;
+            document.getElementById('dossier-symbol-svg').innerHTML = data.svgSymbol;
+            document.getElementById('dossier-symbol-svg').style.color = data.color;
+
+            // Stats
+            document.getElementById('stat-agility-val').textContent = `${data.stats.agility}%`;
+            document.getElementById('stat-agility-bar').style.width = `${data.stats.agility}%`;
+            document.getElementById('stat-agility-bar').style.backgroundColor = data.color;
+            
+            document.getElementById('stat-strength-val').textContent = `${data.stats.strength}%`;
+            document.getElementById('stat-strength-bar').style.width = `${data.stats.strength}%`;
+            document.getElementById('stat-strength-bar').style.backgroundColor = data.color;
+
+            document.getElementById('stat-tech-val').textContent = `${data.stats.tech}%`;
+            document.getElementById('stat-tech-bar').style.width = `${data.stats.tech}%`;
+            
+            // Update custom styles mapping colors
+            document.documentElement.style.setProperty('--theme-primary', data.color);
+        }
+
+        function filterSpiderDossiers() {
+            const val = document.getElementById('search-input').value.toLowerCase();
+            let matchedId = null;
+            Object.keys(DOSSIERS).forEach(key => {
+                const d = DOSSIERS[key];
+                if (d.name.toLowerCase().includes(val) || d.earth.toLowerCase().includes(val) || d.bio.toLowerCase().includes(val)) {
+                    matchedId = key;
+                }
+            });
+            if (matchedId) {
+                selectDossier(matchedId);
+            }
+        }
+
+        function scanDossier() {
+            const scanLine = document.getElementById('dossier-scan-line');
+            scanLine.classList.remove('hidden');
+            playGlitchSound();
+            setTimeout(() => {
+                scanLine.classList.add('hidden');
+                alert(`Blueprints Decrypted for ${DOSSIERS[selectedDossierId].name}! Bio-molecular profile sync finalized.`);
+            }, 3000);
+        }
+
+        // ================= TIMELINE INTERACTION =================
+        function toggleTimelineDetails(id) {
+            playClickSound();
+            const details = document.getElementById(id);
+            if (details.classList.contains('hidden')) {
+                details.classList.remove('hidden');
+            } else {
+                details.classList.add('hidden');
+            }
+        }
+
+        // ================= SUIT WORKBENCH & VAULT =================
+        const SUIT_PRESETS = {
+            vanguard: {
+                base: "#0e0e0e", accent: "#e62429", eyes: "#00fbfb",
+                traversal: 94, defense: 85, stealth: 72, name: "[ACTIVE PREVIEW] VANGUARD.2099"
+            },
+            classic: {
+                base: "#1a365d", accent: "#c53030", eyes: "#ffffff",
+                traversal: 85, defense: 80, stealth: 60, name: "[ACTIVE PREVIEW] CLASSIC.616"
+            },
+            noir: {
+                base: "#111111", accent: "#2d3748", eyes: "#4a5568",
+                traversal: 78, defense: 75, stealth: 98, name: "[ACTIVE PREVIEW] STEALTH.NOIR"
+            },
+            punk: {
+                base: "#2d3748", accent: "#c53030", eyes: "#f6e05e",
+                traversal: 90, defense: 88, stealth: 55, name: "[ACTIVE PREVIEW] SPIDER-PUNK.138"
+            }
+        };
+
+        function applySuitPreset(key) {
+            const preset = SUIT_PRESETS[key];
+            if (!preset) return;
+            
+            playThwipSound();
+            document.getElementById('suit-color-base').value = preset.base;
+            document.getElementById('suit-color-accent').value = preset.accent;
+            document.getElementById('suit-color-eyes').value = preset.eyes;
+            
+            document.getElementById('stat-suit-traversal').textContent = preset.traversal;
+            document.getElementById('stat-suit-defense').textContent = preset.defense;
+            document.getElementById('stat-suit-stealth').textContent = preset.stealth;
+            document.getElementById('suit-status-terminal').textContent = preset.name;
+            
+            // Sweep scan bar
+            const scanBar = document.getElementById('suit-scan-bar');
+            scanBar.style.transform = 'translateY(0)';
+            
+            updateSuitSVG(preset.base, preset.accent, preset.eyes);
+            logSuitTerminal(`preset loaded: ${key.toUpperCase()}. Re-calibrating blueprint meshes...`);
+        }
+
+        function updateSuitCustomColors() {
+            const base = document.getElementById('suit-color-base').value;
+            const accent = document.getElementById('suit-color-accent').value;
+            const eyes = document.getElementById('suit-color-eyes').value;
+            
+            updateSuitSVG(base, accent, eyes);
+            document.getElementById('suit-status-terminal').textContent = "[ACTIVE PREVIEW] CUSTOM CONFIG";
+        }
+
+        function updateSuitSVG(base, accent, eyes) {
+            document.getElementById('suit-body').setAttribute('fill', base);
+            document.getElementById('suit-accent').setAttribute('fill', accent);
+            document.getElementById('suit-logo').setAttribute('stroke', accent);
+            document.getElementById('suit-logo-body').setAttribute('fill', accent);
+            document.getElementById('suit-eyes-left').setAttribute('fill', eyes);
+            document.getElementById('suit-eyes-right').setAttribute('fill', eyes);
+            
+            // Update glows
+            document.getElementById('suit-eyes-left').style.filter = `drop-shadow(0 0 4px ${eyes})`;
+            document.getElementById('suit-eyes-right').style.filter = `drop-shadow(0 0 4px ${eyes})`;
+        }
+
+        function updateSuitTexture(type) {
+            playClickSound();
+            const webs = document.getElementById('suit-webbing');
+            
+            // Reset buttons
+            document.getElementById('btn-texture-web').className = "bg-black/40 text-white/50 py-2 border-2 border-white/10 font-label-tech text-xs uppercase tracking-wider";
+            document.getElementById('btn-texture-carbon').className = "bg-black/40 text-white/50 py-2 border-2 border-white/10 font-label-tech text-xs uppercase tracking-wider";
+            document.getElementById('btn-texture-clean').className = "bg-black/40 text-white/50 py-2 border-2 border-white/10 font-label-tech text-xs uppercase tracking-wider";
+
+            if (type === 'web') {
+                webs.setAttribute('stroke', 'rgba(255,255,255,0.12)');
+                webs.setAttribute('stroke-dasharray', '0');
+                document.getElementById('btn-texture-web').className = "bg-black hover:bg-primary-container text-white py-2 border-2 border-primary font-label-tech text-xs uppercase tracking-wider";
+                logSuitTerminal("applied webbing mesh overlays.");
+            } else if (type === 'carbon') {
+                webs.setAttribute('stroke', 'rgba(255,255,255,0.18)');
+                webs.setAttribute('stroke-dasharray', '2,4');
+                document.getElementById('btn-texture-carbon').className = "bg-black hover:bg-primary-container text-white py-2 border-2 border-primary font-label-tech text-xs uppercase tracking-wider";
+                logSuitTerminal("carbon armor matrix applied.");
+            } else {
+                webs.setAttribute('stroke', 'transparent');
+                document.getElementById('btn-texture-clean').className = "bg-black hover:bg-primary-container text-white py-2 border-2 border-primary font-label-tech text-xs uppercase tracking-wider";
+                logSuitTerminal("suit texture cleared.");
+            }
+        }
+
+        function logSuitTerminal(msg) {
+            const consoleEl = document.getElementById('suit-console');
+            consoleEl.innerHTML += `<div>&gt; ${msg}</div>`;
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+
+        function equipSuitConfiguration() {
+            playUnlockSound();
+            const accent = document.getElementById('suit-color-accent').value;
+            const eyes = document.getElementById('suit-color-eyes').value;
+            
+            // Set global theme variables dynamically!
+            document.documentElement.style.setProperty('--theme-primary', accent);
+            document.documentElement.style.setProperty('--theme-secondary', eyes);
+            document.documentElement.style.setProperty('--theme-cursor-glow', accent + '80'); // hex opacity
+            
+            // Trigger HUD notification
+            const hud = document.getElementById('hud-notification');
+            hud.textContent = "SUIT RE-CALIBRATED & EQUIPPED!";
+            hud.classList.remove('hidden');
+            setTimeout(() => { hud.classList.add('hidden'); }, 3000);
+            
+            logSuitTerminal("SUIT PROTOCOL LOADED. Traversal parameters injected successfully.");
+        }
+
+        // ================= GADGET SYNTHESIS & FIRING PHYSICS =================
+        let synthPolymer = 65;
+        let synthTensile = 70;
+        let synthCharge = 30;
+
+        function updateChemicalSynthesis() {
+            synthPolymer = document.getElementById('slider-polymer').value;
+            synthTensile = document.getElementById('slider-tensile').value;
+            synthCharge = document.getElementById('slider-charge').value;
+
+            document.getElementById('slider-polymer-val').textContent = `${synthPolymer}%`;
+            document.getElementById('slider-tensile-val').textContent = `${synthTensile}%`;
+            document.getElementById('slider-charge-val').textContent = `${synthCharge}%`;
+
+            // Compute naming formula
+            const formula = document.getElementById('formula-name');
+            if (synthPolymer > 80 && synthTensile > 80) {
+                formula.textContent = "Steel Cable Web T-4";
+            } else if (synthCharge > 80) {
+                formula.textContent = "Electro-Spark Web V-2";
+            } else if (synthPolymer > 85) {
+                formula.textContent = "Heavy Adhesive Net M-9";
+            } else if (synthTensile > 85) {
+                formula.textContent = "High-Elastic Splat E-8";
+            } else {
+                formula.textContent = "Standard Web-Fluid v4.2";
+            }
+        }
+
+        function injectFormulaBuffer() {
+            playUnlockSound();
+            alert(`Synthesized formula [${document.getElementById('formula-name').textContent}] successfully compiled and loaded into tactical shooters.`);
+        }
+
+        // --- VERLET PHYSICS SIMULATOR FOR FIRING RANGE ---
+        const rangeCanvas = document.getElementById('firingRangeCanvas');
+        const rangeCtx = rangeCanvas.getContext('2d');
+        let points = [];
+        let constraints = [];
+        let anchors = [];
+        let rangeWidth = 400;
+        let rangeHeight = 350;
+        let isDrawingWeb = false;
+        let mouseJoint = null;
+        let hudScannerActive = false;
+
+        function initFiringRangePhysics() {
+            const container = document.getElementById('canvas-container');
+            rangeWidth = container.clientWidth;
+            rangeHeight = container.clientHeight;
+            rangeCanvas.width = rangeWidth;
+            rangeCanvas.height = rangeHeight;
+
+            points = [];
+            constraints = [];
+            anchors = [];
+
+            // Spawn 4 anchors at the borders
+            anchors.push({ x: 40, y: 40, label: "ANCHOR-A" });
+            anchors.push({ x: rangeWidth - 40, y: 40, label: "ANCHOR-B" });
+            anchors.push({ x: 40, y: rangeHeight - 40, label: "ANCHOR-C" });
+            anchors.push({ x: rangeWidth - 40, y: rangeHeight - 40, label: "ANCHOR-D" });
+
+            // Spawn 3 targets (anomalies)
+            for (let i = 0; i < 3; i++) {
+                points.push({
+                    x: rangeWidth / 2 + (Math.random() - 0.5) * 150,
+                    y: rangeHeight / 2 + (Math.random() - 0.5) * 150,
+                    oldX: rangeWidth / 2,
+                    oldY: rangeHeight / 2,
+                    radius: 20,
+                    stabilized: false,
+                    id: i
+                });
+            }
+
+            // Bind canvas mouse events
+            rangeCanvas.onmousedown = handleRangeMouseDown;
+            rangeCanvas.onmousemove = handleRangeMouseMove;
+            window.addEventListener('mouseup', handleRangeMouseUp);
+        }
+
+        function handleRangeMouseDown(e) {
+            const rect = rangeCanvas.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+            
+            playThwipSound();
+
+            // Check if clicking close to point
+            let targetPoint = null;
+            points.forEach(p => {
+                const dist = Math.hypot(p.x - mx, p.y - my);
+                if (dist < p.radius * 2) {
+                    targetPoint = p;
+                }
+            });
+
+            if (targetPoint) {
+                // Connect to closest anchor or make mouse joint
+                let closestAnchor = null;
+                let minDist = 9999;
+                anchors.forEach(a => {
+                    const dist = Math.hypot(a.x - mx, a.y - my);
+                    if (dist < minDist) {
+                        minDist = dist;
+                        closestAnchor = a;
+                    }
+                });
+
+                // Web lines constraint
+                if (closestAnchor && minDist < 200) {
+                    constraints.push({
+                        type: 'anchor',
+                        point: targetPoint,
+                        anchor: closestAnchor,
+                        length: minDist * 0.8,
+                        stiffness: synthTensile / 100
+                    });
+                    
+                    // Spawn particles
+                    spawnSparks(targetPoint.x, targetPoint.y);
+                } else {
+                    mouseJoint = { point: targetPoint, mx: mx, my: my };
+                }
+            }
+        }
+
+        function handleRangeMouseMove(e) {
+            if (!mouseJoint) return;
+            const rect = rangeCanvas.getBoundingClientRect();
+            mouseJoint.mx = e.clientX - rect.left;
+            mouseJoint.my = e.clientY - rect.top;
+        }
+
+        function handleRangeMouseUp() {
+            mouseJoint = null;
+        }
+
+        function spawnSparks(x, y) {
+            for (let i = 0; i < 8; i++) {
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: (Math.random() - 0.5) * 5,
+                    vy: (Math.random() - 0.5) * 5,
+                    alpha: 1,
+                    size: Math.random() * 2 + 1,
+                    color: synthCharge > 50 ? '#00fbfb' : '#ffb4ac'
+                });
+            }
+        }
+
+        function resetRangeAnomalies() {
+            playThwipSound();
+            initFiringRangePhysics();
+        }
+
+        function toggleNeuralHud() {
+            playUnlockSound();
+            hudScannerActive = !hudScannerActive;
+            const notification = document.getElementById('hud-notification');
+            if (hudScannerActive) {
+                notification.textContent = "HUD SYSTEM: SCANNING INTERFACE";
+                notification.classList.remove('hidden');
+                document.getElementById('hud-toggle-btn').className = "bg-primary border border-black text-white text-xs px-3 py-1 font-label-tech uppercase";
+            } else {
+                notification.classList.add('hidden');
+                document.getElementById('hud-toggle-btn').className = "bg-black hover:bg-primary-container border border-primary text-white text-xs px-3 py-1 font-label-tech uppercase";
+            }
+        }
+
+        // Firing Range physics loop
+        function updatePhysics() {
+            // Verlet Integration
+            points.forEach(p => {
+                if (mouseJoint && mouseJoint.point === p) {
+                    p.x = mouseJoint.mx;
+                    p.y = mouseJoint.my;
+                } else {
+                    const vx = (p.x - p.oldX) * 0.98;
+                    const vy = (p.y - p.oldY) * 0.98;
+                    p.oldX = p.x;
+                    p.oldY = p.y;
+                    p.x += vx;
+                    p.y += vy + 0.05; // gravity
+                }
+
+                // Bounce off canvas walls
+                if (p.x < p.radius) { p.x = p.radius; p.oldX = p.x + (p.x - p.oldX) * -0.5; }
+                if (p.x > rangeWidth - p.radius) { p.x = rangeWidth - p.radius; p.oldX = p.x + (p.x - p.oldX) * -0.5; }
+                if (p.y < p.radius) { p.y = p.radius; p.oldY = p.y + (p.y - p.oldY) * -0.5; }
+                if (p.y > rangeHeight - p.radius) { p.y = rangeHeight - p.radius; p.oldY = p.y + (p.y - p.oldY) * -0.5; }
+            });
+
+            // Solve constraints
+            for (let i = 0; i < 4; i++) {
+                constraints.forEach(c => {
+                    if (c.type === 'anchor') {
+                        const dx = c.point.x - c.anchor.x;
+                        const dy = c.point.y - c.anchor.y;
+                        const dist = Math.hypot(dx, dy);
+                        const diff = c.length - dist;
+                        const percent = (diff / dist) * 0.5 * c.stiffness;
+                        const offsetX = dx * percent;
+                        const offsetY = dy * percent;
+
+                        c.point.x += offsetX;
+                        c.point.y += offsetY;
+                    }
+                });
+            }
+
+            // Render
+            rangeCtx.clearRect(0, 0, rangeWidth, rangeHeight);
+
+            // Draw Anchors
+            anchors.forEach(a => {
+                rangeCtx.fillStyle = '#1c1c1c';
+                rangeCtx.strokeStyle = 'var(--theme-primary)';
+                rangeCtx.lineWidth = 3;
+                rangeCtx.beginPath();
+                rangeCtx.arc(a.x, a.y, 8, 0, Math.PI * 2);
+                rangeCtx.fill();
+                rangeCtx.stroke();
+
+                rangeCtx.fillStyle = '#fff';
+                rangeCtx.font = '8px Space Grotesk';
+                rangeCtx.fillText(a.label, a.x - 20, a.y - 12);
+            });
+
+            // Draw Web Constraints
+            constraints.forEach(c => {
+                rangeCtx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
+                rangeCtx.lineWidth = Math.max(2, synthPolymer / 15);
+                rangeCtx.beginPath();
+                // Draw sagging catenary curve
+                const midX = (c.point.x + c.anchor.x) / 2;
+                const midY = (c.point.y + c.anchor.y) / 2 + 10; // sag
+                rangeCtx.moveTo(c.point.x, c.point.y);
+                rangeCtx.quadraticCurveTo(midX, midY, c.anchor.x, c.anchor.y);
+                rangeCtx.stroke();
+
+                // Electric charges overlay
+                if (synthCharge > 40) {
+                    rangeCtx.strokeStyle = '#00fbfb';
+                    rangeCtx.lineWidth = 1;
+                    rangeCtx.beginPath();
+                    rangeCtx.moveTo(c.point.x, c.point.y);
+                    rangeCtx.quadraticCurveTo(midX + (Math.random() - 0.5) * 15, midY + (Math.random() - 0.5) * 15, c.anchor.x, c.anchor.y);
+                    rangeCtx.stroke();
+                }
+            });
+
+            // Draw targets (Anomalies)
+            points.forEach(p => {
+                // Check if stabilized (if tethered to at least 2 anchors)
+                const connections = constraints.filter(c => c.point === p).length;
+                p.stabilized = connections >= 2;
+
+                rangeCtx.fillStyle = p.stabilized ? 'rgba(0, 251, 251, 0.8)' : 'rgba(230, 36, 41, 0.9)';
+                rangeCtx.strokeStyle = '#000';
+                rangeCtx.lineWidth = 4;
+                rangeCtx.beginPath();
+                rangeCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                rangeCtx.fill();
+                rangeCtx.stroke();
+
+                // Draw spider emblem on targets
+                rangeCtx.fillStyle = '#000';
+                rangeCtx.font = '10px Space Grotesk';
+                rangeCtx.textAlign = 'center';
+                rangeCtx.fillText(p.stabilized ? "OK" : "RIFT", p.x, p.y + 3);
+            });
+
+            // HUD overlay scanning visuals
+            if (hudScannerActive) {
+                rangeCtx.strokeStyle = 'rgba(0, 251, 251, 0.3)';
+                rangeCtx.lineWidth = 1;
+                rangeCtx.beginPath();
+                rangeCtx.moveTo(mouseX % rangeWidth, 0);
+                rangeCtx.lineTo(mouseX % rangeWidth, rangeHeight);
+                rangeCtx.moveTo(0, mouseY % rangeHeight);
+                rangeCtx.lineTo(rangeWidth, mouseY % rangeHeight);
+                rangeCtx.stroke();
+
+                points.forEach(p => {
+                    rangeCtx.strokeStyle = '#00fbfb';
+                    rangeCtx.beginPath();
+                    rangeCtx.arc(p.x, p.y, p.radius + 10 + Math.sin(Date.now() / 100) * 4, 0, Math.PI * 2);
+                    rangeCtx.stroke();
+                });
+            }
+
+            requestAnimationFrame(updatePhysics);
+        }
+
+        // ================= CHRONO-STABILIZER MINI-GAME =================
+        let gameTimerInterval = null;
+        let gameTimeLeft = 20.00;
+        let gameActive = false;
+        let tasksStatus = { freq: false, memory: false, rifts: false };
+
+        function startStabilizerGame() {
+            initAudio();
+            playUnlockSound();
+            document.getElementById('game-intro-overlay').classList.add('hidden');
+            
+            gameActive = true;
+            gameTimeLeft = 20.00;
+            tasksStatus = { freq: false, memory: false, rifts: false };
+            
+            document.getElementById('badge-task-freq').className = "text-[9px] font-label-tech bg-red-900 text-red-300 px-2 py-0.5 uppercase";
+            document.getElementById('badge-task-freq').textContent = "UNSYNCED";
+            
+            document.getElementById('badge-task-mem').className = "text-[9px] font-label-tech bg-red-900 text-red-300 px-2 py-0.5 uppercase";
+            document.getElementById('badge-task-mem').textContent = "LOCKED";
+            
+            document.getElementById('badge-task-rifts').className = "text-[9px] font-label-tech bg-red-900 text-red-300 px-2 py-0.5 uppercase";
+            document.getElementById('badge-task-rifts').textContent = "0 / 6 CLOSED";
+
+            // Reset overlays
+            document.getElementById('game-success-overlay').classList.add('hidden');
+            document.getElementById('game-failure-overlay').classList.add('hidden');
+
+            // Initialize all mini games
+            initFreqMiniGame();
+            initMemoryMiniGame();
+            initRiftsMiniGame();
+
+            // Run timer
+            clearInterval(gameTimerInterval);
+            gameTimerInterval = setInterval(() => {
+                if (!gameActive) return;
+                gameTimeLeft -= 0.05;
+                if (gameTimeLeft <= 0) {
+                    gameTimeLeft = 0;
+                    endStabilizerGame(false);
+                }
+                document.getElementById('game-timer').textContent = `${gameTimeLeft.toFixed(2)}s`;
+                updateStabilizationProgress();
+            }, 50);
+        }
+
+        function updateStabilizationProgress() {
+            let clearedCount = 0;
+            if (tasksStatus.freq) clearedCount++;
+            if (tasksStatus.memory) clearedCount++;
+            if (tasksStatus.rifts) clearedCount++;
+
+            const pct = Math.round((clearedCount / 3) * 100);
+            document.getElementById('game-progress-percent').textContent = `${pct}%`;
+            
+            if (clearedCount === 3) {
+                endStabilizerGame(true);
+            }
+        }
+
+        function endStabilizerGame(success) {
+            gameActive = false;
+            clearInterval(gameTimerInterval);
+
+            if (success) {
+                playUnlockSound();
+                document.getElementById('game-success-overlay').classList.remove('hidden');
+                
+                // Update navigation security clearance badge!
+                const clearanceDot = document.getElementById('clearance-dot');
+                clearanceDot.className = "w-2.5 h-2.5 bg-green-500 rounded-full mr-1";
+                document.getElementById('clearance-badge').querySelector('span:not(#clearance-dot)').textContent = "Access: Society Level 2";
+                document.getElementById('clearance-badge').className = "bg-surface-container-high border-2 border-black px-4 py-2 font-label-tech text-xs uppercase skew-x-[-10deg] text-green-400 flex items-center gap-1 select-none shadow-[0_0_10px_rgba(0,251,0,0.2)]";
+            } else {
+                playGlitchSound();
+                document.getElementById('game-failure-overlay').classList.remove('hidden');
+            }
+        }
+
+        function restartStabilizerGame() {
+            startStabilizerGame();
+        }
+
+        // --- Stabilizer Sub Game 1: Freq Sync ---
+        const freqCanvas = document.getElementById('freqCanvas');
+        const freqCtx = freqCanvas.getContext('2d');
+        let targetFreq = 4.5;
+        let targetAmp = 20;
+
+        function initFreqMiniGame() {
+            targetFreq = (Math.random() * 6 + 2).toFixed(1);
+            targetAmp = Math.round(Math.random() * 15 + 10);
+            updateFreqGame();
+        }
+
+        function updateFreqGame() {
+            if (!gameActive) return;
+            const w = freqCanvas.width = 200;
+            const h = freqCanvas.height = 96;
+
+            const playerFreq = parseFloat(document.getElementById('slider-freq').value);
+            const playerAmp = parseInt(document.getElementById('slider-amp').value);
+
+            freqCtx.clearRect(0, 0, w, h);
+
+            // Draw target wave (yellow)
+            freqCtx.strokeStyle = 'rgba(241, 196, 15, 0.4)';
+            freqCtx.lineWidth = 3;
+            freqCtx.beginPath();
+            for (let x = 0; x < w; x++) {
+                const y = h/2 + Math.sin(x * (targetFreq / 20)) * targetAmp;
+                if (x === 0) freqCtx.moveTo(x, y);
+                else freqCtx.lineTo(x, y);
+            }
+            freqCtx.stroke();
+
+            // Draw player wave (cyan)
+            freqCtx.strokeStyle = 'var(--theme-secondary)';
+            freqCtx.lineWidth = 2;
+            freqCtx.beginPath();
+            for (let x = 0; x < w; x++) {
+                const y = h/2 + Math.sin(x * (playerFreq / 20)) * playerAmp;
+                if (x === 0) freqCtx.moveTo(x, y);
+                else freqCtx.lineTo(x, y);
+            }
+            freqCtx.stroke();
+
+            // Evaluate Match
+            const diffFreq = Math.abs(playerFreq - targetFreq);
+            const diffAmp = Math.abs(playerAmp - targetAmp);
+
+            if (diffFreq < 0.3 && diffAmp < 3) {
+                tasksStatus.freq = true;
+                document.getElementById('badge-task-freq').className = "text-[9px] font-label-tech bg-green-900 text-green-300 px-2 py-0.5 uppercase";
+                document.getElementById('badge-task-freq').textContent = "SYNC LOCKED";
+            }
+        }
+
+        // --- Stabilizer Sub Game 2: Bypass Memory grid ---
+        let memoryCards = [];
+        let memoryFlipped = [];
+
+        function initMemoryMiniGame() {
+            const symbols = ['token', 'security', 'warning', 'wifi', 'token', 'security', 'warning', 'wifi'];
+            // Shuffle
+            symbols.sort(() => Math.random() - 0.5);
+
+            const grid = document.getElementById('memory-grid');
+            grid.innerHTML = '';
+            memoryCards = [];
+            memoryFlipped = [];
+
+            symbols.forEach((sym, idx) => {
+                const card = document.createElement('div');
+                card.className = "w-full aspect-square bg-black/60 border border-white/20 flex items-center justify-center cursor-pointer text-white font-label-tech text-xs transition-all hover:border-red-500 hover:scale-105 active:scale-95";
+                card.dataset.index = idx;
+                card.dataset.symbol = sym;
+                card.innerHTML = `<span class="material-symbols-outlined hidden text-base text-tertiary">${sym}</span><span class="card-cover">?</span>`;
+                
+                card.onclick = () => handleMemoryCardClick(card);
+                grid.appendChild(card);
+                memoryCards.push(card);
+            });
+        }
+
+        function handleMemoryCardClick(card) {
+            if (!gameActive || memoryFlipped.length >= 2 || card.classList.contains('matched') || card.classList.contains('flipped')) return;
+
+            playClickSound();
+            card.classList.add('flipped');
+            card.querySelector('.material-symbols-outlined').classList.remove('hidden');
+            card.querySelector('.card-cover').classList.add('hidden');
+            memoryFlipped.push(card);
+
+            if (memoryFlipped.length === 2) {
+                setTimeout(checkMemoryMatch, 400);
+            }
+        }
+
+        function checkMemoryMatch() {
+            const [c1, c2] = memoryFlipped;
+            if (c1.dataset.symbol === c2.dataset.symbol) {
+                c1.classList.add('matched');
+                c2.classList.add('matched');
+                c1.style.borderColor = '#00fbfb';
+                c2.style.borderColor = '#00fbfb';
+            } else {
+                c1.classList.remove('flipped');
+                c2.classList.remove('flipped');
+                c1.querySelector('.material-symbols-outlined').classList.add('hidden');
+                c2.querySelector('.material-symbols-outlined').classList.add('hidden');
+                c1.querySelector('.card-cover').classList.remove('hidden');
+                c2.querySelector('.card-cover').classList.remove('hidden');
+            }
+            memoryFlipped = [];
+
+            // Check completion
+            const allMatched = memoryCards.every(c => c.classList.contains('matched'));
+            if (allMatched) {
+                tasksStatus.memory = true;
+                document.getElementById('badge-task-mem').className = "text-[9px] font-label-tech bg-green-900 text-green-300 px-2 py-0.5 uppercase";
+                document.getElementById('badge-task-mem').textContent = "BYPASSED";
+            }
+        }
+
+        // --- Stabilizer Sub Game 3: Deflect Rifts Grid ---
+        let riftsTargetCount = 6;
+        let riftsCleared = 0;
+
+        function initRiftsMiniGame() {
+            riftsCleared = 0;
+            document.getElementById('rifts-nodes-wrapper').innerHTML = '';
+            spawnNewRiftNode();
+        }
+
+        function spawnNewRiftNode() {
+            if (!gameActive || riftsCleared >= riftsTargetCount) return;
+
+            const container = document.getElementById('rifts-radar-container');
+            const wrapper = document.getElementById('rifts-nodes-wrapper');
+
+            const cw = container.clientWidth;
+            const ch = container.clientHeight;
+
+            const node = document.createElement('div');
+            node.className = "absolute w-8 h-8 rounded-full border-2 border-red-500 bg-red-600/30 flex items-center justify-center cursor-pointer animate-ping hover:scale-110 active:scale-90 transition-all select-none";
+            node.style.left = `${Math.random() * (cw - 40) + 10}px`;
+            node.style.top = `${Math.random() * (ch - 40) + 10}px`;
+            node.innerHTML = `<span class="material-symbols-outlined text-xs text-white">flash_on</span>`;
+
+            node.onclick = (e) => {
+                e.stopPropagation();
+                playThwipSound();
+                node.remove();
+                riftsCleared++;
+                
+                document.getElementById('badge-task-rifts').textContent = `${riftsCleared} / ${riftsTargetCount} CLOSED`;
+                
+                if (riftsCleared >= riftsTargetCount) {
+                    tasksStatus.rifts = true;
+                    document.getElementById('badge-task-rifts').className = "text-[9px] font-label-tech bg-green-900 text-green-300 px-2 py-0.5 uppercase";
+                    document.getElementById('badge-task-rifts').textContent = "ALL RIFTS CLOSED";
+                } else {
+                    spawnNewRiftNode();
+                }
+            };
+
+            wrapper.appendChild(node);
+        }
+
+        // ================= CUSTOM WEB PARTICLE ENGINE =================
+        const canvasParticles = document.getElementById('particleCanvas');
+        const ctxP = canvasParticles.getContext('2d');
+        let particles = [];
+
+        canvasParticles.width = window.innerWidth;
+        canvasParticles.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvasParticles.width = window.innerWidth;
+            canvasParticles.height = window.innerHeight;
+            if (document.getElementById('page-gadgets').classList.contains('hidden') === false) {
+                initFiringRangePhysics();
+            }
+        });
+
+        // Mouse click triggers visual web burst particles
+        document.addEventListener('click', (e) => {
+            const count = 12;
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: e.clientX,
+                    y: e.clientY,
+                    vx: (Math.random() - 0.5) * 6,
+                    vy: (Math.random() - 0.5) * 6,
+                    alpha: 1,
+                    size: Math.random() * 4 + 1,
+                    color: getComputedStyle(document.documentElement).getPropertyValue('--theme-primary').trim()
+                });
+            }
+        });
+
+        // Custom cursor trail particles
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.75) {
+                particles.push({
+                    x: e.clientX,
+                    y: e.clientY,
+                    vx: (Math.random() - 0.5) * 2,
+                    vy: (Math.random() - 0.5) * 2,
+                    alpha: 0.8,
+                    size: Math.random() * 2 + 1,
+                    color: getComputedStyle(document.documentElement).getPropertyValue('--theme-secondary').trim()
+                });
+            }
+        });
+
+        function animateParticles() {
+            ctxP.clearRect(0, 0, canvasParticles.width, canvasParticles.height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.alpha -= 0.015;
+
+                if (p.alpha <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                    continue;
+                }
+
+                ctxP.fillStyle = p.color;
+                ctxP.globalAlpha = p.alpha;
+                ctxP.beginPath();
+                ctxP.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctxP.fill();
+            }
+            ctxP.globalAlpha = 1.0;
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
+
+        // 3D Perspective Card Tilt
+        document.querySelectorAll('.comic-panel').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 25;
+                const rotateY = (centerX - x) / 25;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+            });
+        });
+
+        // Initialize variables on startup
+        selectDossier('miles');
+        initFiringRangePhysics();
+        updatePhysics();
+    </script>
+</body>
+</html>
